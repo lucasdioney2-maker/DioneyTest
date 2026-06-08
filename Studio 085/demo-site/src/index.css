@@ -1,0 +1,12 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+:root {
+  --accent: #e8c97a;
+  --accent2: #c8a855;
+  --bg: #0a0a0a;
+  --bg2: #111;
+  --bg3: #1a1a1a;
+  --text: #fff;
+  --muted: #888;
+}
+html { scroll-behavior: smooth; }
