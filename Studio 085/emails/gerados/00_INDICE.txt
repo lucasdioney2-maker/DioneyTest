@@ -1,0 +1,59 @@
+STUDIO 085 — ÍNDICE DE PROSPECÇÃO
+======================================================================
+
+Nº   Nome                                Categoria              Av.    ⭐     Canal            Tel
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+1    Oporto Confeitaria                  Café / Pastelaria      2295   4.6   📞 Ligação        22 502 0666
+2    Novo Rumo                           Café / Pastelaria      2095   4.2   📞 Ligação        22 781 3637
+3    Bella Roma - Porto                  Café / Pastelaria      1676   4.4   📞 Ligação        22 200 9086
+4    Neta 3 - Padaria e Confeitaria      Café / Pastelaria      1206   4.5   📞 Ligação        22 208 3649
+5    Maximus - Confectionery             Café / Pastelaria      1208   4.3   📞 Ligação        22 781 3627
+6    Bali-Hai Polynesian Bar             Bar                    968    4.6   📞 Ligação        22 332 3829
+7    Confeitaria São Domingos            Padaria / Confeitaria  961    4.6   📞 Ligação        22 200 5447
+8    Restaurante Japonês - BURI          Restaurante            865    4.4   📞 Ligação        22 600 9255
+9    Mariscaria Bom Sucesso              Restaurante            861    4.4   📞 Ligação        22 609 6259
+10   Holy Moly - Ice Cream & Coffee Sho  Restaurante            716    4.1   ❓ Sem contacto   
+11   La Boheme entre Amis                Bar                    649    4.4   📞 Ligação        22 201 5154
+12   Casa Das Tortas                     Restaurante            637    4.4   📱 WhatsApp       910 740 013
+13   Vasco da Gama Restaurant            Restaurante            556    4.6   📱 WhatsApp       937 176 262
+14   Imperador OPorto                    Restaurante            545    4.6   📱 WhatsApp       965 171 595
+15   Bar Lusco Fusco                     Bar                    555    4.4   📱 WhatsApp       938 844 393
+16   Champanheria da Baixa               Bar                    535    4.3   ❓ Sem contacto   
+17   Confeitaria Porto Alegre            Padaria / Confeitaria  520    4.4   📞 Ligação        22 618 8898
+18   O Pretinho do Japão                 Bar                    465    4.6   📞 Ligação        22 200 7185
+19   Olive Cafetaria Restaurante & Pizz  Padaria / Confeitaria  410    4.3   📞 Ligação        22 600 2399
+20   Linha22 | Bar Garrafeira            Restaurante            287    4.6   📞 Ligação        22 201 2234
+21   Ravioli Boavista Pizzaria           Restaurante            300    4.0   📞 Ligação        22 201 0703
+22   Confeitaria A Nova Luso             Padaria / Confeitaria  244    4.4   📞 Ligação        22 606 7254
+23   Raio Azul                           Café / Pastelaria      222    4.5   📞 Ligação        22 537 7155
+24   Orange on Patio                     Café / Pastelaria      221    4.3   ❓ Sem contacto   
+25   Torta de Noz                        Padaria / Confeitaria  211    4.2   📞 Ligação        22 371 5800
+26   HeartGallery Tattoo Piercing        Loja                   180    4.9   📱 WhatsApp       917 110 616
+27   Sem Stress                          Café / Pastelaria      203    4.3   📞 Ligação        22 406 8912
+28   Kandal Gym                          Ginásio                166    4.7   📱 WhatsApp       963 939 017
+29   Quimalino Cabeleireiros             Cabeleireiro           156    4.6   📞 Ligação        22 536 0527
+30   Avenida 830                         Restaurante            173    4.1   📱 WhatsApp       962 374 478
+31   Hair Identity                       Cabeleireiro           145    4.8   📱 WhatsApp       934 528 072
+32   Alma Porto                          Bar                    143    4.3   ❓ Sem contacto   
+33   Lim beauty concept                  Salão de Beleza        125    4.8   📱 WhatsApp       938 314 793
+34   ELEVEN HAIR STUDIO                  Cabeleireiro           104    4.7   📱 WhatsApp       916 977 597
+35   Mafalda Perfeito HairStylist        Cabeleireiro           120    4.0   📞 Ligação        22 327 4196
+36   CLOTILDE CABELEIREIROS              Cabeleireiro           88     4.7   📞 Ligação        22 379 5509
+37   Salao Londres                       Cabeleireiro           73     4.7   📱 WhatsApp       914 814 657
+38   Plantizoo                           Loja                   74     4.2   📞 Ligação        22 510 1044
+39   Valle Saúde                         Clínica / Fisioterapi  62     5.0   📱 WhatsApp       969 720 170
+40   Fernando Amaro Hairmaster           Cabeleireiro           60     4.8   📞 Ligação        22 099 3965
+41   Clínica Fisiátrica Dr Paulo Milhei  Clínica / Fisioterapi  65     4.4   📞 Ligação        22 606 2074
+42   Barbearia Hércules                  Cabeleireiro           60     4.7   📞 Ligação        22 016 3093
+43   Er&Er Confeitaria | Snack-Bar       Café / Pastelaria      63     4.4   📞 Ligação        22 372 3703
+44   Nos Enviados Cabeleireiros          Cabeleireiro           43     4.4   📱 WhatsApp       916 692 629
+45   Martins & Miguel Rua Lda            Loja                   44     4.3   📱 WhatsApp       966 072 160
+46   Deniro VIP                          Loja de Roupa          39     4.8   📞 Ligação        22 508 8486
+47   Tattoo-Do Estúdio de Tatuagens e P  Loja                   38     4.6   📱 WhatsApp       915 938 811
+48   Largo do Padrão - Hair Salon & Bar  Cabeleireiro           31     4.8   📞 Ligação        22 099 3419
+49   Lili De Sousa - Cabeleireiros E Es  Cabeleireiro           30     4.6   📞 Ligação        22 609 7110
+50   Physis - Clínica Fisiátrica         Clínica / Fisioterapi  32     4.3   📞 Ligação        22 600 3033
+51   Manuela & Cris                      Cabeleireiro           29     4.3   📞 Ligação        22 617 8980
+52   Alberto Marinho Lda                 Cabeleireiro           23     4.4   📞 Ligação        22 606 7710
+
+TOTAL: 52 empresas | 15 WhatsApp | 33 ligações
