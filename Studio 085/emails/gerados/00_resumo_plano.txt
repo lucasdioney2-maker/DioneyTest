@@ -1,0 +1,36 @@
+STUDIO 085 — PLANO DE PROSPECÇÃO | PORTO
+======================================================================
+
+TOTAL DE EMPRESAS: 52
+
+  📱 WhatsApp (número móvel 9xx): 15 empresas
+  📞 Ligação (número fixo 2xx):   33 empresas
+  ❓ Sem contacto:                4 empresas
+
+ORDEM DE ATAQUE:
+  1. Pesquisar email de cada empresa no Google antes de enviar
+  2. Enviar EMAIL (mais formal, melhor taxa de conversão B2B)
+  3. Se sem resposta em 7 dias → WhatsApp (números 9xx)
+  4. Se sem resposta → Ligação telefónica
+
+TOP 10 EMPRESAS (por score):
+  1. Oporto Confeitaria | 2295 av. 4.6⭐ | 📞 Ligação 22 502 0666
+  2. Novo Rumo | 2095 av. 4.2⭐ | 📞 Ligação 22 781 3637
+  3. Bella Roma - Porto | 1676 av. 4.4⭐ | 📞 Ligação 22 200 9086
+  4. Neta 3 - Padaria e Confeitaria | 1206 av. 4.5⭐ | 📞 Ligação 22 208 3649
+  5. Maximus - Confectionery | 1208 av. 4.3⭐ | 📞 Ligação 22 781 3627
+  6. Bali-Hai Polynesian Bar | 968 av. 4.6⭐ | 📞 Ligação 22 332 3829
+  7. Confeitaria São Domingos | 961 av. 4.6⭐ | 📞 Ligação 22 200 5447
+  8. Restaurante Japonês - BURI | 865 av. 4.4⭐ | 📞 Ligação 22 600 9255
+  9. Mariscaria Bom Sucesso | 861 av. 4.4⭐ | 📞 Ligação 22 609 6259
+  10. Holy Moly - Ice Cream & Coffee Shop | 716 av. 4.1⭐ | ❓ Sem contacto 
+
+FICHEIROS:
+  📊 Planilha tracking:  prospeccao/Studio_085_Plano_Prospeccao.xlsx
+  📧 Emails prontos:     emails/gerados/01_emails_prontos.txt
+  📱 WhatsApp prontos:   emails/gerados/02_whatsapp_prontos.txt
+  📞 Lista de ligações:  emails/gerados/03_ligacoes_lista.txt
+
+⚠️  ANTES DE COMEÇAR:
+  - Actualizar em gerar_plano_completo.py: TEL_STUDIO, INSTAGRAM, EMAIL_STUDIO
+  - Adicionar link do portfolio nos templates
