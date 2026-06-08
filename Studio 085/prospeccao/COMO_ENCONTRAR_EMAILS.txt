@@ -1,0 +1,97 @@
+STUDIO 085 — GUIA RÁPIDO PARA ENCONTRAR EMAILS
+======================================================================
+Como encontrar o email de cada empresa em 2-3 minutos
+
+----------------------------------------------------------------------
+MÉTODO 1 — Facebook (funciona para ~70% das empresas)
+----------------------------------------------------------------------
+1. Vai a facebook.com
+2. Pesquisa: "Nome da Empresa Porto"
+3. Abre a página da empresa
+4. Clica em "Sobre" ou "Info"
+5. O email aparece frequentemente em "Informações de contacto"
+
+----------------------------------------------------------------------
+MÉTODO 2 — Google (rápido, bom para confirmar)
+----------------------------------------------------------------------
+Pesquisa directamente no Google:
+  → "Oporto Confeitaria" Porto email
+  → "Oporto Confeitaria" contacto gmail
+  → "Oporto Confeitaria" site:facebook.com
+
+----------------------------------------------------------------------
+MÉTODO 3 — Google Maps (olhar com atenção)
+----------------------------------------------------------------------
+1. Abre o link do Maps da empresa (está em cada ficheiro de email)
+2. Vai a "Sobre" no perfil
+3. Às vezes o email está listado lá directamente
+
+----------------------------------------------------------------------
+MÉTODO 4 — Instagram
+----------------------------------------------------------------------
+1. Pesquisa o nome no Instagram
+2. Na bio de muitos negócios locais está o email
+3. Ou "email para contacto" nos destaques
+
+----------------------------------------------------------------------
+REGISTRO — preenche aqui à medida que encontras:
+----------------------------------------------------------------------
+
+[1]  Oporto Confeitaria          | email: ________________________
+[2]  Novo Rumo                   | email: ________________________
+[3]  Bella Roma - Porto          | email: ________________________
+[4]  Neta 3 - Padaria            | email: ________________________
+[5]  Maximus - Confectionery     | email: ________________________
+[6]  Bali-Hai Polynesian Bar     | email: ________________________
+[7]  Confeitaria São Domingos    | email: ________________________
+[8]  Restaurante BURI            | email: ________________________
+[9]  Mariscaria Bom Sucesso      | email: ________________________
+[10] Holy Moly                   | email: ________________________
+[11] La Boheme entre Amis        | email: ________________________
+[12] Casa Das Tortas             | email: ________________________
+[13] Vasco da Gama Restaurant    | email: ________________________
+[14] Imperador OPorto            | email: ________________________
+[15] Bar Lusco Fusco             | email: ________________________
+[16] Champanheria da Baixa       | email: ________________________
+[17] Confeitaria Porto Alegre    | email: ________________________
+[18] O Pretinho do Japão         | email: ________________________
+[19] Olive Cafetaria             | email: ________________________
+[20] Linha22 Bar Garrafeira      | email: ________________________
+[21] Ravioli Boavista Pizzaria   | email: ________________________
+[22] Confeitaria A Nova Luso     | email: ________________________
+[23] Raio Azul                   | email: ________________________
+[24] Orange on Patio             | email: ________________________
+[25] Torta de Noz                | email: ________________________
+[26] HeartGallery Tattoo         | email: ________________________
+[27] Sem Stress                  | email: ________________________
+[28] Kandal Gym                  | email: ________________________
+[29] Quimalino Cabeleireiros     | email: ________________________
+[30] Avenida 830                 | email: ________________________
+[31] Hair Identity               | email: ________________________
+[32] Alma Porto                  | email: ________________________
+[33] Lim beauty concept          | email: ________________________
+[34] ELEVEN HAIR STUDIO          | email: ________________________
+[35] Mafalda Perfeito            | email: ________________________
+[36] CLOTILDE CABELEIREIROS      | email: ________________________
+[37] Salao Londres               | email: ________________________
+[38] Plantizoo                   | email: ________________________
+[39] Valle Saúde                 | email: ________________________
+[40] Fernando Amaro Hairmaster   | email: ________________________
+[41] Clínica Dr Paulo Milheiro   | email: ________________________
+[42] Barbearia Hércules          | email: ________________________
+[43] Er&Er Confeitaria           | email: ________________________
+[44] Nos Enviados Cabeleireiros  | email: ________________________
+[45] Martins & Miguel Rua Lda    | email: ________________________
+[46] Deniro VIP                  | email: ________________________
+[47] Tattoo-Do Estúdio           | email: ________________________
+[48] Largo do Padrão Hair Salon  | email: ________________________
+[49] Lili De Sousa               | email: ________________________
+[50] Physis Clínica              | email: ________________________
+[51] Manuela & Cris              | email: ________________________
+[52] Alberto Marinho Lda         | email: ________________________
+
+----------------------------------------------------------------------
+DICA: começa pelas top 10 (maior número de avaliações).
+Se encontrares email → envia o email do ficheiro emails/por_empresa/
+Se não encontrares → passa para a lista de ligações (LISTA_SEM_EMAIL.txt)
+----------------------------------------------------------------------

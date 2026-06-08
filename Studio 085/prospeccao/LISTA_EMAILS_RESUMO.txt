@@ -1,0 +1,14 @@
+STUDIO 085 — RESUMO DE CONTACTOS
+======================================================================
+
+📧 Com email encontrado:      0 empresas → enviar email amanhã
+📱 WhatsApp (sem email):     15 empresas → mensagem após emails
+📞 Ligação (sem email):      33 empresas → ligar após emails
+❓ Sem contacto:              4 empresas → pesquisa manual
+────────────────────────────────────────
+   TOTAL:                   52 empresas
+
+PLANO:
+  1. Amanhã 8h30 → enviar emails (LISTA_COM_EMAIL.txt)
+  2. Sem resposta em 7 dias → WhatsApp e ligações (LISTA_SEM_EMAIL.txt)
+  3. Empresas sem contacto → pesquisa manual no Maps/Facebook
