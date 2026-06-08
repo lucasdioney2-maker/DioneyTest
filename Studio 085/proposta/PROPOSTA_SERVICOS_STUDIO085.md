@@ -10,11 +10,11 @@
 Criamos o vosso site do zero, com design profissional adaptado ao vosso negócio.
 
 **O que pagam:**
-| Item | Custo mensal |
-|------|-------------|
-| Hospedagem + domínio (.pt) | ~10–15€/mês |
-| Plataforma (Framer/Webflow) | incluído |
-| **Criação do site** | **0€** ← Studio 085 absorve |
+| Item | Valor |
+|------|-------|
+| **Criação do site** (design + desenvolvimento) | **150€** (pagamento único) |
+| Hospedagem + domínio + manutenção mensal | **50€/mês** |
+| Plataforma (Framer) | incluído |
 
 **O que está incluído no site:**
 - ✅ Design personalizado ao vosso negócio
@@ -34,34 +34,40 @@ Depois do site no ar, o próximo passo é alimentá-lo com conteúdo de qualidad
 
 **Pacotes disponíveis:**
 
-#### Pack Básico — 150€/mês
-- 1 sessão fotográfica mensal (2h, espaço e produto)
+#### Pack Básico — 500€/mês
+- Sessão fotográfica mensal
+- 4 vídeos curtos (reels/stories)
 - 8 publicações para Instagram (foto + legenda)
 - Atualização de conteúdo no site (1x/mês)
 
-#### Pack Intermédio — 280€/mês
-- 1 sessão fotográfica + 1 vídeo curto mensal
-- 12 publicações Instagram + stories
+#### Pack Intermédio — 700€/mês
+- Sessão fotográfica mensal
+- 6 vídeos (reels, stories, apresentação)
+- 12 publicações para Instagram
 - Atualização de conteúdo no site (2x/mês)
 - Relatório mensal de visitas e engagement
 
-#### Pack Completo — 450€/mês
-- 2 sessões de produção mensais (foto + vídeo)
-- 20 publicações Instagram + stories + reels
-- Gestão completa do Instagram
-- Blog/artigos no site (2x/mês)
+#### Pack Completo — 950€/mês
+- Sessões de produção ilimitadas no mês
+- 8 vídeos (reels, stories, institucionais)
+- 30 publicações para Instagram
+- Gestão completa do Instagram (respostas, stories, estratégia)
+- Atualização de conteúdo no site (semanal)
 - Relatório mensal + estratégia de conteúdo
 
 ---
 
-### 🤖 FASE 3 — Conteúdo com IA (opção futura)
+### 🤖 FASE 3 — Conteúdo com IA (alternativa aos packs)
 
-Para reduzir custos de produção no futuro, podemos implementar:
-- Geração de textos com IA para o site e Instagram
-- Imagens geradas por IA para publicações
-- Automação de resposta a comentários e mensagens
+Para quem não queira ou não possa investir em produção audiovisual física, oferecemos uma alternativa com Inteligência Artificial:
 
-**Custo:** a negociar conforme o volume de conteúdo
+- Imagens e vídeos gerados por IA (estilo do negócio)
+- Textos para Instagram e site gerados automaticamente
+- Automação de publicações e respostas
+
+> Esta opção tem custo mais reduzido e pode ser combinada com produção real em datas especiais (lançamentos, promoções).
+
+**Custo:** orçamento personalizado conforme o volume
 
 ---
 

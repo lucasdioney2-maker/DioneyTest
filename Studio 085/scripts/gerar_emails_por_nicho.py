@@ -35,7 +35,7 @@ O problema? Quem pesquisa "restaurante no Porto" no Google não vos encontra —
 Queremos resolver isso:
 
 🌐 Site profissional com menu, fotos e localização
-   → Pagam apenas hospedagem + domínio (~10€/mês). Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Sessão fotográfica dos pratos, espaço e equipa
    → Imagens profissionais que fazem as pessoas querer reservar mesa
@@ -43,7 +43,7 @@ Queremos resolver isso:
 📱 Conteúdo para Instagram e Google
    → Publicações regulares que atraem novos clientes
 
-A lógica é simples: o site fica praticamente de graça para nós estabelecermos uma parceria. Um restaurante com a vossa qualidade merece uma vitrina à altura.
+A lógica é simples: o investimento é mínimo — 150€ de criação e 50€/mês de manutenção. Um restaurante com a vossa qualidade merece uma vitrina à altura.
 
 Se quiserem ver exemplos do nosso trabalho: {portfolio}
 
@@ -67,7 +67,7 @@ Mas muita gente que procura "café/pastelaria no Porto" nunca vos vai encontrar 
 O que propomos:
 
 ☕ Site elegante com a vossa história, produtos e horário
-   → Pagam apenas ~10€/mês de hospedagem. Desenvolvemos sem cobrar criação.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Fotografia profissional dos vossos produtos e espaço
    → Imagens que transmitem o ambiente e fazem as pessoas querer vir
@@ -75,7 +75,7 @@ O que propomos:
 📱 Presença activa no Instagram
    → Conteúdos que fidelizam e atraem novos clientes
 
-Queremos ser o vosso parceiro de comunicação a longo prazo — e por isso a criação do site é praticamente de graça.
+Queremos ser o vosso parceiro de comunicação a longo prazo — e por isso o investimento inicial é apenas 150€, mais 50€/mês de manutenção.
 
 Exemplos do nosso trabalho: {portfolio}
 
@@ -97,7 +97,7 @@ O vosso bar tem {aval} avaliações com {est}⭐ no Google Maps. Isso é excelen
 Queremos ajudar a mudar isso, sem grande investimento da vossa parte:
 
 🍸 Site moderno com a identidade do bar, eventos e localização
-   → Apenas ~10€/mês de hospedagem. Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 🎥 Vídeo e foto do espaço, ambiente e cocktails
    → Conteúdo que mostra a vibe do bar e atrai o público certo
@@ -105,7 +105,7 @@ Queremos ajudar a mudar isso, sem grande investimento da vossa parte:
 📱 Instagram activo e consistente
    → Stories, reels e publicações que criam comunidade
 
-O site é praticamente de graça — queremos ser o vosso parceiro de conteúdo a longo prazo.
+O investimento é mínimo: 150€ de criação + 50€/mês. Queremos ser o vosso parceiro de conteúdo a longo prazo.
 
 Portfolio: {portfolio}
 Contacto: {tel}
@@ -126,7 +126,7 @@ O meu nome é Lucas, do Studio 085.
 O que ainda falta? Uma presença online onde novos clientes vos possam encontrar e descobrir o vosso trabalho.
 
 🥐 Site com os vossos produtos, história e horário
-   → Só pagam ~10€/mês de hospedagem. Criação por nossa conta.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Fotografia profissional dos vossos produtos
    → Imagens que fazem crescer água na boca e aumentam as encomendas
@@ -157,7 +157,7 @@ Mas hoje em dia, quem procura "cabeleireiro no Porto" no Google espera encontrar
 Queremos ajudar:
 
 ✂️ Site profissional com serviços, galeria de trabalhos e reserva de marcações
-   → Apenas ~10€/mês de hospedagem. Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Fotografia dos vossos cortes, colorações e espaço
    → Portfólio visual que atrai novos clientes e mostra o vosso estilo
@@ -186,7 +186,7 @@ O meu nome é Lucas, do Studio 085 — estúdio de comunicação e audiovisual n
 O próximo passo natural é ter uma presença online que reflicta essa qualidade e traga novas clientes:
 
 💅 Site elegante com serviços, galeria e marcações online
-   → Pagam apenas a hospedagem (~10€/mês). Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Fotografia profissional do espaço e dos vossos tratamentos
    → Imagens que transmitem confiança e elevam a percepção da marca
@@ -213,7 +213,7 @@ A vossa clínica tem {aval} avaliações com {est}⭐ — uma reputação excele
 Hoje, os pacientes pesquisam online antes de marcar consulta. Um site profissional transmite credibilidade e facilita o contacto.
 
 🏥 Site clínico com serviços, equipa, localização e formulário de marcação
-   → Apenas ~10€/mês de hospedagem. Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Fotografia profissional das instalações e equipa
    → Imagens que transmitem confiança e profissionalismo
@@ -240,7 +240,7 @@ O meu nome é Lucas, do Studio 085 — estúdio audiovisual no Porto.
 Queremos ajudar a mudar isso:
 
 💪 Site com modalidades, horários, preços e tour virtual
-   → Apenas ~10€/mês de hospedagem. Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 🎥 Vídeo e foto das instalações e aulas
    → Conteúdo que mostra a energia do ginásio e converte visitantes em membros
@@ -267,7 +267,7 @@ Sou o Lucas, do Studio 085.
 O que propomos:
 
 🛍️ Site com produtos, serviços e localização
-   → Apenas ~10€/mês de hospedagem. Criação sem custo.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
    → No futuro, podemos adicionar loja online se precisarem.
 
 📸 Fotografia profissional dos produtos e espaço
@@ -293,7 +293,7 @@ O meu nome é Lucas, do Studio 085 — estúdio criativo no Porto.
 {aval} avaliações com {est}⭐ mostra que têm um produto e serviço que as pessoas adoram. Agora é altura de ter uma presença online que reflicta isso.
 
 👗 Site com look-book, colecções e contactos
-   → Apenas ~10€/mês de hospedagem. Criação por nossa conta.
+   → 150€ de criação + 50€/mês de manutenção e hospedagem.
 
 📸 Sessão fotográfica editorial das peças e espaço
    → Imagens de moda que elevam a marca e aumentam as vendas
@@ -321,7 +321,7 @@ Encontrei o vosso negócio no Google Maps: {aval} avaliações com {est}⭐. É 
 
 O que propomos:
 
-🌐 Site profissional → pagam apenas ~10€/mês de hospedagem (criação sem custo)
+🌐 Site profissional → 150€ de criação + 50€/mês de manutenção
 📸 Fotografia e vídeo do vosso negócio
 📱 Conteúdo para Instagram
 
@@ -363,7 +363,7 @@ Olá! 👋 Sou o Lucas do Studio 085 🎥
 
 Vi o *{nome}* no Google Maps — {aval} avaliações com {est}⭐, impressionante! 🙌
 
-Estamos a criar sites profissionais para negócios do Porto sem presença online — praticamente de graça (só pagam ~10€/mês de hospedagem).
+Estamos a criar sites profissionais para negócios do Porto sem presença online — 150€ de criação e 50€/mês de manutenção.
 
 Também fazemos foto, vídeo e gestão de Instagram 📸
 
@@ -380,7 +380,7 @@ Avaliações: {aval}⭐ {est}
  O meu nome é Lucas, sou do Studio 085, um estúdio audiovisual no Porto.
  Encontrei o vosso negócio no Google Maps com {aval} avaliações — excelente!
  Queria partilhar uma proposta rápida: criamos sites profissionais para
- negócios do Porto praticamente de graça, só pagam a hospedagem.
+ negócios do Porto praticamente de graça, 150€ de criação e 50€/mês de manutenção.
  Tem um minutinho para eu explicar melhor?"
 
 Se sim → "Ótimo! Posso enviar um email com todos os detalhes?

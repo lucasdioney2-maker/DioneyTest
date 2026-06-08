@@ -65,14 +65,14 @@ Encontrei o vosso {cat.lower()} no Google Maps e fiquei impressionado: {int(aval
 
 Por isso mesmo, quero partilhar uma proposta que pode fazer todo o sentido para vocês:
 
-🌐 SITE PROFISSIONAL — criamos o vosso site e entregamo-lo praticamente a custo zero.
-   Pagam apenas a hospedagem e domínio (~10€/mês). Não há margem nossa na criação.
+🌐 SITE PROFISSIONAL — 150€ de criação + 50€/mês de manutenção (hospedagem incluída).
+   Um investimento mínimo para ter uma presença online profissional.
 
 📸 FOTOGRAFIA & VÍDEO — captamos o vosso espaço, equipa e produto com qualidade profissional.
 
 📱 CONTEÚDO PARA INSTAGRAM & SITE — mantemos os vossos perfis activos e atrativos com novos clientes a aparecer.
 
-A lógica é simples: queremos ser o vosso parceiro de conteúdo a longo prazo. Por isso o site vem praticamente de graça — porque acreditamos que um negócio com a vossa reputação merece ser visto por muito mais pessoas.
+A lógica é simples: queremos ser o vosso parceiro de conteúdo a longo prazo. O site tem um custo mínimo — porque acreditamos que um negócio com a vossa reputação merece ser visto por muito mais pessoas.
 
 Se quiserem ver exemplos do nosso trabalho e perceber como funciona, é só responder a este email. Sem compromisso nenhum.
 
@@ -90,7 +90,7 @@ Olá! Sou o Lucas do Studio 085 🎥
 
 Vi o *{nome}* no Google Maps — {int(aval)} avaliações com {est}⭐, impressionante para um {cat}! 👏
 
-Estamos a criar sites profissionais para negócios do Porto sem presença online, praticamente de graça — só pagam a hospedagem (~10€/mês).
+Estamos a criar sites profissionais para negócios do Porto sem presença online, praticamente de graça — 150€ de criação + 50€/mês de manutenção.
 
 Também fazemos foto, vídeo e gestão de Instagram se precisarem 📸
 
@@ -257,7 +257,7 @@ def main():
         f.write('   sou do Studio 085, um estúdio audiovisual no Porto.\n')
         f.write('   Encontrei o vosso negócio no Google Maps com excelentes avaliações\n')
         f.write('   e queria partilhar uma proposta — criamos sites profissionais\n')
-        f.write('   para negócios do Porto praticamente a custo zero.\n')
+        f.write('   para negócios do Porto 150€ de criação e 50€/mês de manutenção.\n')
         f.write('   Tem um minutinho para eu explicar?"\n\n')
         f.write("="*70 + "\n\n")
         for i, e in enumerate(call_list, 1):
