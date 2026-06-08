@@ -11,11 +11,11 @@ OUTPUT_DIR = Path("../emails/por_empresa")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Dados do Studio ───────────────────────────────────────────────────────────
-NOME_STUDIO   = "Lucas | Studio 085"
-TEL_STUDIO    = "+351 XXX XXX XXX"    # ← preencher
-INSTAGRAM     = "@studio085"           # ← preencher
-EMAIL_STUDIO  = "studio085@gmail.com"  # ← preencher
-PORTFOLIO_URL = "https://linktr.ee/studio085"  # ← preencher
+NOME_STUDIO   = "Lucas Dioney | Studio 085"
+TEL_STUDIO    = "+351 913 137 568"
+INSTAGRAM     = "@studio085pt"
+EMAIL_STUDIO  = "studio085pt@gmail.com"
+PORTFOLIO_URL = "https://www.canva.com/design/DAGoqWC6gAo/cuPjAi8B7VeOpF8G0GiIhw/view?utm_content=DAGoqWC6gAo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h35fe059f43#2"
 
 # ── Templates por nicho ───────────────────────────────────────────────────────
 

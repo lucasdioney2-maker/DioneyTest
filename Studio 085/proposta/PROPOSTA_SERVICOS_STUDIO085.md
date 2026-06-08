@@ -117,7 +117,7 @@ Somos um estúdio pequeno, mas comprometido. Não temos dezenas de clientes simu
 ---
 
 **Studio 085 | Porto**
-📞 +351 XXX XXX XXX
-📷 @studio085
-✉️ studio085@gmail.com
-🌐 [PORTFOLIO]
+📞 +351 913 137 568
+📷 @studio085pt | @dioneyfilmes
+✉️ studio085pt@gmail.com
+🌐 https://www.canva.com/design/DAGoqWC6gAo/cuPjAi8B7VeOpF8G0GiIhw/view?utm_content=DAGoqWC6gAo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h35fe059f43#2

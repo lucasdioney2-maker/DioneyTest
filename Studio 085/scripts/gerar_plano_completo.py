@@ -20,10 +20,10 @@ WPP_TXT     = "../emails/gerados/02_whatsapp_prontos.txt"
 LIGACOES_TXT= "../emails/gerados/03_ligacoes_lista.txt"
 RESUMO_TXT  = "../emails/gerados/00_resumo_plano.txt"
 
-NOME_STUDIO   = "Lucas | Studio 085"
-TEL_STUDIO    = "+351 XXX XXX XXX"   # ← substituir
-INSTAGRAM     = "@studio085"          # ← substituir
-EMAIL_STUDIO  = "studio085@gmail.com" # ← substituir
+NOME_STUDIO   = "Lucas Dioney | Studio 085"
+TEL_STUDIO    = "+351 913 137 568"
+INSTAGRAM     = "@studio085pt"
+EMAIL_STUDIO  = "studio085pt@gmail.com"
 
 CATEGORIA_PT = {
     "restaurant": "Restaurante",
