@@ -44,11 +44,22 @@
 - Aesthetics: Retro-pixel art with warm amber/gold accents, VHS scanlines overlay
 - Technology: Vanilla JS + Canvas 2D, no heavy frameworks, mobile-first
 
-**Interest curve**:
-- Opening hook: First dance performance in Canindé → phone camera discovered
-- Mid-act climax: Leaving Brazil, losing all equipment
-- Act 2 tension: Immigrant life, washing dishes, buying first camera again
-- Act 3 peak: Company founded, drone shot of Lisbon
+**Interest curve / Act structure (expanded)**:
+
+**Ato 1 — Brasil (a ascensão)**
+1. *Canindé* — origem no sertão: dança, Motorola V3, Windows Movie Maker, Stari Rebol (Junin, Luan)
+2. *Fortaleza* — salto para a capital: Sony Vegas, primeiros trabalhos pagos, contato com Tirullipa
+3. *Viagens pelo Brasil* — em turnê com Tirullipa gravando pelo país, ápice da carreira no Brasil
+4. *Queda* — o contrato com Tirullipa acaba → decisão de recomeçar na Europa (perde tudo)
+
+**Ato 2 — Europa (o recomeço)**
+1. *Porto* — vida nova de imigrante: trabalhos de restauração, luta pelo documento, zero equipamento
+2. *Lisboa* — reconstrução: volta a comprar câmeras nível a nível, primeiros trabalhos com André
+
+**Ato 3 — A empresa (a conquista)**
+1. *Empresa no Porto* — funda a empresa com André (sócio/primo), monta a crew: Alex, Yuri, Luan, Rox, Bruni
+2. *Europa e o mundo* — produções em locais reais: Warner Bros., Ibiza com Wesley Safadão, Egito
+3. *Final* — drone shot épico, a crew completa, do sertão para o mundo
 
 ---
 
@@ -77,9 +88,12 @@ Windows Movie Maker → Sony Vegas → Premiere Pro / DaVinci
 ```
 
 ### Crew unlock tree
-- Ato 1: Junin (primo), Luan (irmão), Tiro Lipa (artista)
-- Ato 2: André (sócio, proto-versão)
-- Ato 3: André, Alex, Yuri, Rox, Bruni + freelancers
+- Ato 1 (Canindé/Fortaleza): Junin (primo), Luan (irmão), Tirullipa (artista/contratante)
+- Ato 2 (Porto/Lisboa): André (sócio, primeiros trabalhos)
+- Ato 3 (empresa): André, Alex, Yuri, Luan, Rox, Bruni + freelancers
+
+### Mapa de cenários por capítulo
+Canindé → Fortaleza → estradas do Brasil (turnê) → Porto → Lisboa → Porto (empresa) → Warner Bros. / Ibiza / Egito
 
 ### Feedback loops
 - Gravar com melhor equip → vídeo tem mais views → mais dinheiro → melhor equip
