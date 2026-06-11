@@ -1,0 +1,22 @@
+name: Deploy DioneyMaker zip to Higgsfield
+on:
+  workflow_dispatch:
+    inputs:
+      upload_url:
+        description: "Presigned PUT URL from Higgsfield media_upload"
+        required: true
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package game
+        run: cd DioneyMaker/game && zip -r /tmp/dioneymaker.zip index.html logic.js game.js strings.js
+      - name: PUT to Higgsfield
+        run: |
+          code=$(curl -s -o /tmp/resp.txt -w "%{http_code}" -X PUT \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @/tmp/dioneymaker.zip \
+            "${{ inputs.upload_url }}")
+          echo "HTTP $code"; cat /tmp/resp.txt
+          test "$code" = "200"
