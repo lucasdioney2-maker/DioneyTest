@@ -49,3 +49,12 @@
 - ✓ deploy_game OK — modo rules
 - game_id: 197893d9-99bd-491f-9994-2a01a16e7971  (NECESSÁRIO para updates futuros)
 - URL: https://fearless-compass-734.higgsfield.gg/
+
+## Remake PS1 (pré-renderizado com Soul "Dioney new")
+- ✓ 27 imagens geradas pelo utilizador na app (unlimited) e mapeadas da biblioteca
+- ✓ Workflow CI: download → WebP (q82, 1280w) → zip 13 itens → PUT 200
+- ✗ deploy_game update com game_id antigo falhou 3× (erro genérico do servidor)
+- ✓ Publicado como jogo novo:
+- game_id PS1: 8a39a1d5-e12a-48fe-aaf5-f5401dfc6b96
+- URL PS1: https://elegant-storm-511.higgsfield.gg/
+- (versão pixel art continua em https://fearless-compass-734.higgsfield.gg/)
