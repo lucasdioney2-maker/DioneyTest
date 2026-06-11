@@ -1,10 +1,8 @@
 name: Deploy DioneyMaker zip to Higgsfield
 on:
-  workflow_dispatch:
-    inputs:
-      upload_url:
-        description: "Presigned PUT URL from Higgsfield media_upload"
-        required: true
+  push:
+    branches: [claude/awesome-lamport-930vs8]
+    paths: [".github/workflows/higgsfield-upload.yml", "DioneyMaker/game/**"]
 jobs:
   upload:
     runs-on: ubuntu-latest
@@ -13,10 +11,11 @@ jobs:
       - name: Package game
         run: cd DioneyMaker/game && zip -r /tmp/dioneymaker.zip index.html logic.js game.js strings.js
       - name: PUT to Higgsfield
+        # presigned URL (válido 24h, só permite PUT deste objeto)
         run: |
           code=$(curl -s -o /tmp/resp.txt -w "%{http_code}" -X PUT \
             -H "Content-Type: application/octet-stream" \
             --data-binary @/tmp/dioneymaker.zip \
-            "${{ inputs.upload_url }}")
+            'https://upload.higgsfield.ai/user_2yCbF86he9zAgZT0p4d8Hyq8yxj/9957be2d-d70f-4436-95ef-377188c77ebc.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYPNTVMCGYPZMTKFK%2F20260611%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260611T230947Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Signature=dcdd386b884ef5b80ff280441d49ff15ad4477f8edcebdfde1d2b18e9ff8d966')
           echo "HTTP $code"; cat /tmp/resp.txt
           test "$code" = "200"
