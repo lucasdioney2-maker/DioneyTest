@@ -43,3 +43,9 @@
 
 ## Stage 5 — Publish
 - pendente (upload do zip sujeito à política de egress; alternativa: deploy local pelo utilizador)
+
+## Stage 5 — Publish (concluído)
+- ✓ Upload via GitHub Actions relay (egress do container bloqueado)
+- ✓ deploy_game OK — modo rules
+- game_id: 197893d9-99bd-491f-9994-2a01a16e7971  (NECESSÁRIO para updates futuros)
+- URL: https://fearless-compass-734.higgsfield.gg/
