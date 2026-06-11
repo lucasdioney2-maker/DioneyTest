@@ -8,14 +8,53 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Download PS1 art and convert to WebP
+        run: |
+          sudo apt-get install -y webp >/dev/null 2>&1 || true
+          mkdir -p DioneyMaker/game/assets
+          base="https://d8j0ntlcm91z4.cloudfront.net/user_2yCbF86he9zAgZT0p4d8Hyq8yxj"
+          declare -A art=(
+            [title]="hf_20260611_233432_c2d4e9ab-7e03-4491-9145-28b1cb689d1c"
+            [icon]="hf_20260611_233554_dd388f39-2c29-4332-a229-b88fd0f5f0bd"
+            [bg_caninde]="hf_20260611_232947_0523a1ee-0dd3-4b9f-9ef6-2799e3e3a675"
+            [bg_fortaleza]="hf_20260611_232957_cbba3015-decc-466d-a7a2-0ef67bc19ddd"
+            [bg_tour]="hf_20260611_233004_4a2c855b-c5d4-4a30-98da-57ee5ba84e54"
+            [bg_porto]="hf_20260611_233011_ad035873-0e51-496b-914a-b27c920829f3"
+            [bg_lisboa]="hf_20260611_233017_1826818d-b509-456a-bce7-648752dd1cea"
+            [bg_studio]="hf_20260611_233027_a58b3c43-db97-4b20-89cf-e0ffdcab1e8f"
+            [bg_warner]="hf_20260611_233041_2f9f1d6e-51d8-435a-a008-cd3a03df72e8"
+            [bg_ibiza]="hf_20260611_233048_bdbe76ba-3f89-4675-ad2c-4090ec37e70c"
+            [bg_egypt]="hf_20260611_233105_302d1ca2-23ac-48a0-a1b7-ddbf526de38c"
+            [cut_film]="hf_20260611_232033_8d29d673-8feb-4d5e-8a7d-39ae74b9a489"
+            [cut_dance]="hf_20260611_232654_46e2b68f-025a-4bd3-9ac4-f0f72d15f910"
+            [cut_edit]="hf_20260611_232711_c3c158c1-de3f-44a5-992d-623faeb968ad"
+            [cut_fortaleza]="hf_20260611_232723_32dee5e0-a79f-4bd5-8332-f226002efdfe"
+            [cut_tour]="hf_20260611_232834_4e17cebc-a1b1-47f0-aa69-b4960a136576"
+            [cut_porto]="hf_20260611_232844_a3603f50-50ab-459e-9ad1-ceaf2809ec66"
+            [cut_lisboa]="hf_20260611_232852_c8197f4c-acd1-421a-9172-d71573a3327b"
+            [cut_studio]="hf_20260611_232902_dd5b2524-e65b-4b20-8c48-42aef4a41183"
+            [cut_drone]="hf_20260611_232911_51ee0088-1ff8-4654-bb7c-c07587f70bc2"
+            [por_dioney]="hf_20260611_232926_e0c211c1-09e3-42fe-a902-49f1ba67e852"
+            [por_tirullipa]="hf_20260611_233344_90646227-fa79-411d-b848-9bb91a1fd061"
+            [por_andre]="hf_20260611_233354_bc61e64e-9304-4bb4-a967-a745ff258d8c"
+            [por_luan]="hf_20260611_233403_a9725886-b2e3-4aaf-9417-0c919edeeab6"
+            [por_alex]="hf_20260611_233158_e348adf2-6c3a-40df-b55d-b971dffe3696"
+            [por_junin]="hf_20260611_233227_709347f4-3e58-4e44-a876-c0c8ce5aa859"
+            [por_safadao]="hf_20260611_233417_10d315b2-2cc8-48f8-8a42-5f7a4c225228"
+          )
+          for key in "${!art[@]}"; do
+            curl -sf "$base/${art[$key]}.png" -o /tmp/$key.png
+            cwebp -q 82 -resize 1280 0 /tmp/$key.png -o DioneyMaker/game/assets/$key.webp >/dev/null 2>&1
+          done
+          ls -la DioneyMaker/game/assets/ && du -sh DioneyMaker/game/assets/
       - name: Package game
-        run: cd DioneyMaker/game && zip -r /tmp/dioneymaker.zip index.html logic.js game.js strings.js
+        run: cd DioneyMaker/game && zip -r /tmp/dioneymaker.zip index.html logic.js game.js strings.js assets
       - name: PUT to Higgsfield
         # presigned URL (válido 24h, só permite PUT deste objeto)
         run: |
           code=$(curl -s -o /tmp/resp.txt -w "%{http_code}" -X PUT \
             -H "Content-Type: application/octet-stream" \
             --data-binary @/tmp/dioneymaker.zip \
-            'https://upload.higgsfield.ai/user_2yCbF86he9zAgZT0p4d8Hyq8yxj/9957be2d-d70f-4436-95ef-377188c77ebc.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYPNTVMCGYPZMTKFK%2F20260611%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260611T230947Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Signature=dcdd386b884ef5b80ff280441d49ff15ad4477f8edcebdfde1d2b18e9ff8d966')
+            'https://upload.higgsfield.ai/user_2yCbF86he9zAgZT0p4d8Hyq8yxj/1a176fde-bf40-41d6-8b16-75d079c35ffd.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYPNTVMCGYPZMTKFK%2F20260611%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260611T233957Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Signature=778ba5074d3ad62a94fea7d0ed963a67619fdc4b9a4b4e136620d4a18a6d62dc')
           echo "HTTP $code"; cat /tmp/resp.txt
           test "$code" = "200"

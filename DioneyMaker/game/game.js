@@ -31,11 +31,37 @@ function load() {
   try { const d = JSON.parse(localStorage.getItem(SAVE_KEY)); if (d && d.scene) { S = d; if (S.scene !== "title") S.scene = "play"; } } catch {}
 }
 
-// ── Imagem gerada (Canindé) com fallback procedural ───────────────
-const bgCanindeImg = new Image();
-let bgCanindeReady = false;
-bgCanindeImg.onload = () => { bgCanindeReady = true; };
-bgCanindeImg.src = "https://d8j0ntlcm91z4.cloudfront.net/user_2yCbF86he9zAgZT0p4d8Hyq8yxj/hf_20260611_225245_81b80d17-1f70-431f-890d-b3509e9565eb.png";
+// ── Arte PS1 pré-renderizada (gerada com Soul "Dioney new") ──────
+const ART_KEYS = [
+  "title","icon",
+  "bg_caninde","bg_fortaleza","bg_tour","bg_porto","bg_lisboa","bg_studio","bg_warner","bg_ibiza","bg_egypt",
+  "cut_film","cut_dance","cut_edit","cut_fortaleza","cut_tour","cut_porto","cut_lisboa","cut_studio","cut_drone",
+  "por_dioney","por_tirullipa","por_andre","por_luan","por_alex","por_junin","por_safadao",
+];
+const ART = {};
+for (const k of ART_KEYS) { const im = new Image(); im.src = `./assets/${k}.webp`; ART[k] = im; }
+function artReady(k) { return ART[k] && ART[k].complete && ART[k].naturalWidth > 0; }
+function drawArt(k) { // cover-fit na resolução lógica
+  const im = ART[k];
+  const s = Math.max(W / im.naturalWidth, H / im.naturalHeight);
+  const w2 = im.naturalWidth * s, h2 = im.naturalHeight * s;
+  ctx.drawImage(im, (W - w2) / 2, (H - h2) / 2, w2, h2);
+}
+// arte por capítulo: cenário de jogo + cutscene da história
+const CHAPTER_ART = {
+  caninde:  { bg: "bg_caninde",   cut: "cut_film",      dance: "cut_dance" },
+  caninde2: { bg: "bg_caninde",   cut: "cut_edit" },
+  fortaleza:{ bg: "bg_fortaleza", cut: "cut_fortaleza" },
+  tour:     { bg: "bg_tour",      cut: "cut_tour" },
+  porto:    { bg: "bg_porto",     cut: "cut_porto" },
+  lisboa:   { bg: "bg_lisboa",    cut: "cut_lisboa" },
+  empresa:  { bg: "bg_studio",    cut: "cut_studio",    outroBg: "bg_warner" },
+  mundo:    { bg: "bg_egypt",     cut: "cut_drone",     outroBg: "bg_ibiza" },
+};
+const PORTRAITS = {
+  "Luan": "por_luan", "Junin": "por_junin", "Tirullipa": "por_tirullipa",
+  "André": "por_andre", "Alex": "por_alex", "Wesley Safadão": "por_safadao",
+};
 
 // ── Input ─────────────────────────────────────────────────────────
 let pointer = null;       // {x,y} em coords lógicas, consumido por frame
@@ -110,7 +136,6 @@ function drawSun(x, y, r, c) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x, y,
 
 const BGS = {
   caninde(t) {
-    if (bgCanindeReady) { ctx.drawImage(bgCanindeImg, 0, 0, W, H); return; }
     skyGrad("#f4a44a", "#d96a3b");
     drawSun(520, 80, 30, "#ffe9a0");
     // Morro do Alto do Moinho + estátua de São Francisco (31m)
@@ -323,8 +348,17 @@ function updateRecord(dt) {
     setTimeout(() => { S.scene = "play"; rec = null; }, 800);
   }
 }
+// cenário do capítulo: arte PS1 se carregada, senão fallback procedural
+function drawChapterBG(t, kind = "bg") {
+  const ch = CHAPTERS[S.chapter];
+  const art = CHAPTER_ART[ch.id];
+  const key = art && art[kind] ? art[kind] : (art ? art.bg : null);
+  if (key && artReady(key)) drawArt(key);
+  else BGS[ch.bgKey](t);
+}
+
 function renderRecord(t) {
-  BGS[CHAPTERS[S.chapter].bgKey](t);
+  drawChapterBG(t, "cut");
   ctx.fillStyle = "rgba(10,6,20,0.55)"; ctx.fillRect(0, 0, W, H);
   // moldura viewfinder
   ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
@@ -365,9 +399,9 @@ function updateDance(dt) {
   for (const k of keysPressed) if (ARROWS.includes(k)) danceInput(k);
 }
 function renderDance(t) {
-  BGS[CHAPTERS[S.chapter].bgKey](t);
+  drawChapterBG(t, "dance");
   ctx.fillStyle = "rgba(10,6,20,0.45)"; ctx.fillRect(0, 0, W, H);
-  drawHero(W / 2 - 12, 170, t * 3, CHAPTERS[S.chapter].act);
+  if (!artReady("cut_dance")) drawHero(W / 2 - 12, 170, t * 3, CHAPTERS[S.chapter].act);
   // sequência
   for (let i = 0; i < dance.seq.length; i++) {
     const x = W / 2 - dance.seq.length * 22 + i * 44;
@@ -413,9 +447,11 @@ function startTalk() {
 
 function renderPlay(t) {
   const ch = CHAPTERS[S.chapter];
-  BGS[ch.bgKey](t);
-  drawHero(80, 215, t, ch.act);
-  ch.npcs.forEach((n, i) => drawNpc(200 + i * 90, 218, t, i));
+  drawChapterBG(t, "bg");
+  if (!artReady(CHAPTER_ART[ch.id]?.bg)) {
+    drawHero(80, 215, t, ch.act);
+    ch.npcs.forEach((n, i) => drawNpc(200 + i * 90, 218, t, i));
+  }
   vhs(t); hud();
   // botões de ação
   buttons = [];
@@ -449,10 +485,19 @@ function renderPlay(t) {
 // ── Diálogo ───────────────────────────────────────────────────────
 function renderDialog(t) {
   const ch = CHAPTERS[S.chapter], npc = ch.npcs[S.npcIdx];
-  BGS[ch.bgKey](t);
-  drawHero(80, 215, t, ch.act);
-  drawNpc(200 + S.npcIdx * 90, 218, t, S.npcIdx);
+  drawChapterBG(t, "bg");
   vhs(t);
+  // retratos estilo FF7: Dioney à esquerda, NPC à direita
+  const pk = PORTRAITS[npc.name];
+  if (artReady("por_dioney")) {
+    const im = ART.por_dioney, s = 130 / im.naturalHeight;
+    ctx.drawImage(im, 16, H - 248, im.naturalWidth * s, 130);
+  }
+  if (pk && artReady(pk)) {
+    const im = ART[pk], s = 130 / im.naturalHeight;
+    const w2 = im.naturalWidth * s;
+    ctx.drawImage(im, W - 16 - w2, H - 248, w2, 130);
+  } else if (!pk) drawNpc(W - 60, H - 230, t, S.npcIdx);
   px(20, H - 110, W - 40, 90, "rgba(20,12,32,0.94)");
   px(20, H - 110, W - 40, 3, "#e8a33d");
   text(npc.name, 36, H - 100, 14, "#f4d44a");
@@ -466,7 +511,7 @@ function renderDialog(t) {
 
 // ── Loja ──────────────────────────────────────────────────────────
 function renderShop(t) {
-  BGS[CHAPTERS[S.chapter].bgKey](t);
+  drawChapterBG(t, "bg");
   ctx.fillStyle = "rgba(10,6,20,0.85)"; ctx.fillRect(0, 0, W, H);
   outlineText(STR.shopTitle, W / 2, 14, 18, "#f4d44a");
   buttons = [];
@@ -494,8 +539,9 @@ function renderShop(t) {
 // ── Intro / Outro de capítulo ─────────────────────────────────────
 function renderStory(t, lines, lineIdx, onDone, advance) {
   const ch = CHAPTERS[S.chapter];
-  BGS[ch.bgKey](t);
-  ctx.fillStyle = "rgba(10,6,20,0.6)"; ctx.fillRect(0, 0, W, H);
+  const kind = S.scene === "outro" && CHAPTER_ART[ch.id]?.outroBg ? "outroBg" : "cut";
+  drawChapterBG(t, kind);
+  ctx.fillStyle = "rgba(10,6,20,0.55)"; ctx.fillRect(0, 0, W, H);
   vhs(t);
   outlineText(`${STR.chapter} ${S.chapter + 1} — ${ch.place}`, W / 2, 50, 15, "#f4d44a");
   for (let i = 0; i <= lineIdx && i < lines.length; i++)
@@ -509,24 +555,27 @@ function renderStory(t, lines, lineIdx, onDone, advance) {
 
 // ── Título / Fim ──────────────────────────────────────────────────
 function renderTitle(t) {
-  BGS.caninde(t); vhs(t);
-  ctx.fillStyle = "rgba(10,6,20,0.5)"; ctx.fillRect(0, 0, W, H);
-  outlineText(STR.title, W / 2, 90, 44, "#f4d44a");
-  outlineText(STR.subtitle, W / 2, 145, 16, "#ffe9c4");
-  drawHero(W / 2 - 12, 190, t, 0);
+  if (artReady("title")) { drawArt("title"); }
+  else { BGS.caninde(t); ctx.fillStyle = "rgba(10,6,20,0.5)"; ctx.fillRect(0, 0, W, H); drawHero(W / 2 - 12, 190, t, 0); }
+  vhs(t);
+  outlineText(STR.title, W / 2, 30, 44, "#f4d44a");
+  outlineText(STR.subtitle, W / 2, 85, 16, "#ffe9c4");
   if ((t / 600 | 0) % 2 === 0) outlineText(STR.tapToStart, W / 2, 290, 13, "#ffe9c4");
   if (pointer || keysPressed.includes("Space") || keysPressed.includes("Enter")) {
     pointer = null; S.scene = "intro"; S.introLine = 0;
   }
 }
 function renderEnd(t) {
-  BGS.egypt(t); vhs(t);
+  if (artReady("cut_drone")) drawArt("cut_drone"); else BGS.egypt(t);
+  vhs(t);
   ctx.fillStyle = "rgba(10,6,20,0.65)"; ctx.fillRect(0, 0, W, H);
   outlineText(STR.gameOver, W / 2, 70, 36, "#f4d44a");
   STR.theEnd.split("\n").forEach((l, i) => outlineText(l, W / 2, 140 + i * 26, 15, "#ffe9c4"));
   STR.credits.split("\n").forEach((l, i) => outlineText(l, W / 2, 230 + i * 20, 11, "#8a8298"));
-  drawHero(W / 2 - 60, 290, t, 3);
-  for (let i = 0; i < 5; i++) drawNpc(W / 2 - 10 + i * 30, 292, t, i);
+  if (!artReady("cut_drone")) {
+    drawHero(W / 2 - 60, 290, t, 3);
+    for (let i = 0; i < 5; i++) drawNpc(W / 2 - 10 + i * 30, 292, t, i);
+  }
 }
 
 // ── Loop principal (timestep fixo) ────────────────────────────────
