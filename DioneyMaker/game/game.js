@@ -64,21 +64,39 @@ const PORTRAITS = {
 };
 
 // ── Input ─────────────────────────────────────────────────────────
-let pointer = null;       // {x,y} em coords lógicas, consumido por frame
-let keysPressed = [];     // códigos físicos pressionados este frame
-const heldArrows = new Set();
+let pointer = null;       // {x,y} toque/clique deste frame
+let keysPressed = [];     // códigos pressionados este frame (edge)
+const held = new Set();   // códigos mantidos (movimento contínuo)
+let swipe = null;         // {dx,dy} gesto concluído este frame
+let swipeStart = null;
 let scale = 1, offX = 0, offY = 0;
+const GAME_KEYS = ["Space","Enter","Escape","ArrowUp","ArrowDown","ArrowLeft","ArrowRight",
+  "KeyW","KeyA","KeyS","KeyD","KeyF"];
 
 function toLogical(cx, cy) {
   const r = canvas.getBoundingClientRect();
   return { x: (cx - r.left - offX) / scale, y: (cy - r.top - offY) / scale };
 }
-canvas.addEventListener("pointerdown", e => { pointer = toLogical(e.clientX, e.clientY); e.preventDefault(); });
+canvas.addEventListener("pointerdown", e => {
+  const p = toLogical(e.clientX, e.clientY);
+  pointer = p; swipeStart = { ...p, t: performance.now() };
+  e.preventDefault();
+});
+canvas.addEventListener("pointerup", e => {
+  if (!swipeStart) return;
+  const p = toLogical(e.clientX, e.clientY);
+  const dx = p.x - swipeStart.x, dy = p.y - swipeStart.y;
+  if (Math.hypot(dx, dy) > 24) swipe = { dx, dy };
+  swipeStart = null; e.preventDefault();
+});
 addEventListener("keydown", e => {
-  if (["Space","Enter","ArrowUp","ArrowDown","ArrowLeft","ArrowRight","KeyW","KeyA","KeyS","KeyD","Escape"].includes(e.code)) {
-    keysPressed.push(e.code); e.preventDefault();
+  if (GAME_KEYS.includes(e.code)) {
+    if (!e.repeat) keysPressed.push(e.code);
+    held.add(e.code); e.preventDefault();
   }
 });
+addEventListener("keyup", e => { held.delete(e.code); });
+const isTouch = typeof matchMedia !== "undefined" && matchMedia("(pointer: coarse)").matches;
 
 function resize() {
   const dpr = Math.min(devicePixelRatio || 1, 1.5);
@@ -323,29 +341,54 @@ function goalMet() {
 }
 function nextDay() { S.day++; save(); }
 
-// ── Mini-game: GRAVAR (barra de estabilidade) ─────────────────────
+// ── Mini-game: GRAVAR (guitar-hero de técnicas de câmera) ─────────
+// 4 pistas = 4 técnicas; notas caem, acerta no ritmo com A S D F ou tocando
+const LANE_KEYS = ["KeyA", "KeyS", "KeyD", "KeyF"];
+const LANE_COLORS = ["#e84a6a", "#3a8af4", "#f4d43a", "#3af48a"];
+const HIT_Y = H - 70;
 let rec = null;
 function startRecord() {
   if (camLevel() === 0 && CHAPTERS[S.chapter].id !== "caninde") { flash("Precisas de uma câmera! Vai à loja."); return; }
-  rec = { pos: 0, dir: 1, speed: 2.2 - Math.min(1.2, S.skill / 100), done: false, t: 0 };
+  const ch = CHAPTERS[S.chapter];
+  const n = 10 + ch.act * 4;
+  const speed = 0.10 + ch.act * 0.02 + Math.min(0.05, S.skill / 2000);
+  const notes = [];
+  let tt = 1200;
+  for (let i = 0; i < n; i++) { notes.push({ lane: (rng() * 4) | 0, t: tt, hit: 0 }); tt += 480 + ((rng() * 3) | 0) * 160; }
+  rec = { notes, t: 0, speed, hits: 0, perfect: 0, combo: 0, maxCombo: 0, done: false, doneT: 0, tip: STR.tips[(rng() * STR.tips.length) | 0] };
   S.scene = "record";
 }
+function recHit(lane) {
+  let best = null, bestD = 1e9;
+  for (const n of rec.notes) {
+    if (n.hit || n.lane !== lane) continue;
+    const d = Math.abs(HIT_Y - (HIT_Y - (n.t - rec.t) * rec.speed));
+    if (d < 44 && d < bestD) { best = n; bestD = d; }
+  }
+  if (!best) { rec.combo = 0; return; }
+  const win = S.owned.stab ? 28 : 18;
+  best.hit = bestD < win ? 2 : 1;
+  rec.hits++; if (best.hit === 2) rec.perfect++;
+  rec.combo++; rec.maxCombo = Math.max(rec.maxCombo, rec.combo);
+  if (rec.combo % 5 === 0) rec.tip = STR.tips[(rng() * STR.tips.length) | 0];
+}
 function updateRecord(dt) {
-  if (rec.done) return;
-  rec.pos += rec.dir * rec.speed * (dt / 16);
-  if (rec.pos > 100) { rec.pos = 100; rec.dir = -1; }
-  if (rec.pos < 0) { rec.pos = 0; rec.dir = 1; }
-  const tap = pointer || keysPressed.includes("Space") || keysPressed.includes("Enter");
-  if (tap) {
+  if (rec.done) { rec.doneT -= dt; if (rec.doneT <= 0) { S.scene = "play"; rec = null; } return; }
+  rec.t += dt;
+  for (const k of keysPressed) { const li = LANE_KEYS.indexOf(k); if (li >= 0) recHit(li); }
+  if (pointer && pointer.y > HIT_Y - 60) {
+    recHit(Math.min(3, Math.max(0, ((pointer.x - (W / 2 - 200)) / 100) | 0)));
     pointer = null;
-    const stab = S.owned.stab ? 14 : 7;
-    const dist = Math.abs(rec.pos - 50);
+  }
+  for (const n of rec.notes) if (!n.hit && (rec.t - n.t) * rec.speed > 44) { n.hit = -1; rec.combo = 0; }
+  const last = rec.notes[rec.notes.length - 1];
+  if (rec.t > last.t + 900) {
+    rec.done = true; rec.doneT = 1600;
     const lvl = Math.max(1, camLevel());
-    if (dist < stab) { S.footage += lvl * 2; S.skill += 3; flash(STR.recordPerfect); }
-    else if (dist < stab * 2.2) { S.footage += lvl; S.skill += 2; flash(STR.recordGood); }
-    else { S.skill += 1; flash(STR.recordBad); }
-    rec.done = true; nextDay();
-    setTimeout(() => { S.scene = "play"; rec = null; }, 800);
+    S.footage += Math.max(1, (rec.hits * lvl + rec.perfect * lvl) >> 1);
+    S.skill += 2 + (rec.maxCombo >> 1);
+    flash(rec.perfect > rec.notes.length / 2 ? STR.recordPerfect : rec.hits > rec.notes.length / 3 ? STR.recordGood : STR.recordBad);
+    nextDay();
   }
 }
 // cenário do capítulo: arte PS1 se carregada, senão fallback procedural
@@ -359,65 +402,112 @@ function drawChapterBG(t, kind = "bg") {
 
 function renderRecord(t) {
   drawChapterBG(t, "cut");
-  ctx.fillStyle = "rgba(10,6,20,0.55)"; ctx.fillRect(0, 0, W, H);
-  // moldura viewfinder
-  ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
-  ctx.strokeRect(100, 60, 440, 200);
-  px(104, 64, 60, 16, "#e83a3a"); text("● REC", 110, 67, 11, "#fff");
-  text(`${["V3 240p","V3 240p","N73 480p","HD 720p","DSLR 1080p","A7 4K","A7 4K+DRONE"][camLevel()]}`, 530, 67, 11, "#fff", "right");
-  // barra de estabilidade
-  px(140, 290, 360, 18, "#1a1028");
-  const stab = S.owned.stab ? 14 : 7;
-  px(140 + (50 - stab) * 3.6, 290, stab * 2 * 3.6, 18, "#f4d44a");       // zona dourada
-  px(140 + rec.pos * 3.6 - 3, 284, 6, 30, "#fff");                       // marcador
-  outlineText(STR.recordHint, W / 2, 320, 12, "#ffe9c4");
+  ctx.fillStyle = "rgba(10,6,20,0.62)"; ctx.fillRect(0, 0, W, H);
+  px(W / 2 - 230, 6, 60, 16, "#e83a3a"); text("● REC", W / 2 - 224, 9, 11, "#fff");
+  text(`${["V3 240p","V3 240p","N73 480p","HD 720p","DSLR 1080p","A7 4K","A7 4K+DRONE"][camLevel()]}`, W / 2 + 230, 9, 11, "#fff", "right");
+  const left = W / 2 - 200;
+  for (let i = 0; i < 4; i++) {
+    const lx = left + i * 100;
+    ctx.fillStyle = "rgba(255,255,255,0.05)"; ctx.fillRect(lx + 6, 30, 88, H - 100);
+    px(lx + 6, HIT_Y - 3, 88, 6, LANE_COLORS[i]);
+    text(STR.lanes[i], lx + 50, HIT_Y + 12, 11, LANE_COLORS[i], "center");
+    if (!isTouch) text("ASDF"[i], lx + 50, HIT_Y + 28, 12, "#ffe9c4", "center");
+  }
+  if (rec) {
+    for (const n of rec.notes) {
+      if (n.hit) continue;
+      const y = HIT_Y - (n.t - rec.t) * rec.speed;
+      if (y < 24 || y > H) continue;
+      const lx = left + n.lane * 100;
+      px(lx + 22, y - 11, 56, 22, LANE_COLORS[n.lane]);
+      px(lx + 26, y - 7, 48, 14, "#1a1028");
+      px(lx + 30, y - 4, 40, 8, LANE_COLORS[n.lane]);
+    }
+    if (rec.combo >= 3) outlineText(`${rec.combo}x ${STR.combo}`, W / 2, 36, 20, "#f4d44a");
+    outlineText(rec.tip, W / 2, 64, 11, "#ffe9c4");
+    if (rec.done) {
+      px(W / 2 - 140, H / 2 - 40, 280, 80, "rgba(20,12,32,0.94)");
+      outlineText(`${rec.hits}/${rec.notes.length} tomadas`, W / 2, H / 2 - 28, 16, "#f4d44a");
+      outlineText(`${rec.perfect} perfeitas · combo ${rec.maxCombo}x`, W / 2, H / 2 - 4, 13, "#ffe9c4");
+    } else outlineText(STR.recordHint, W / 2, H - 22, 11, "rgba(255,233,196,0.8)");
+  }
 }
 
-// ── Mini-game: DANÇAR (sequência) ─────────────────────────────────
+// ── Mini-game: DANÇAR (gestos de mouse/dedo no ritmo) ────────────
 let dance = null;
 const ARROWS = ["ArrowLeft","ArrowUp","ArrowDown","ArrowRight"];
 const ARROW_CHAR = { ArrowLeft: "←", ArrowUp: "↑", ArrowDown: "↓", ArrowRight: "→" };
+const DIRS = [[-1,0],[0,-1],[0,1],[1,0]]; // mesmo índice de ARROWS
 function startDance() {
-  const len = 3 + Math.min(4, Math.floor(S.rep / 10));
-  const seq = []; for (let i = 0; i < len; i++) seq.push(ARROWS[(rng() * 4) | 0]);
-  dance = { seq, idx: 0, show: true, showT: 1600 + len * 350, t: 0 };
+  const n = 6 + Math.min(6, (S.rep / 15) | 0);
+  const notes = [];
+  let tt = 1400;
+  for (let i = 0; i < n; i++) { notes.push({ dir: (rng() * 4) | 0, t: tt, hit: 0 }); tt += 700 + ((rng() * 2) | 0) * 250; }
+  dance = { notes, t: 0, hits: 0, perfect: 0, combo: 0, maxCombo: 0, done: false, doneT: 0 };
   S.scene = "dance";
 }
-function danceInput(code) {
-  if (dance.show) return;
-  if (code === dance.seq[dance.idx]) {
-    dance.idx++;
-    if (dance.idx >= dance.seq.length) {
-      S.rep += 8 + dance.seq.length; flash(STR.danceWin); nextDay();
-      setTimeout(() => { S.scene = "play"; dance = null; }, 800);
-    }
-  } else { flash(STR.danceFail); dance.idx = 0; dance.show = true; dance.showT = 1500; }
+function danceHit(dirIdx) {
+  let best = null, bestD = 1e9;
+  for (const n of dance.notes) {
+    if (n.hit || n.dir !== dirIdx) continue;
+    const d = Math.abs(n.t - dance.t);
+    if (d < 420 && d < bestD) { best = n; bestD = d; }
+  }
+  if (!best) { dance.combo = 0; return; }
+  best.hit = bestD < 180 ? 2 : 1;
+  dance.hits++; if (best.hit === 2) dance.perfect++;
+  dance.combo++; dance.maxCombo = Math.max(dance.maxCombo, dance.combo);
 }
 function updateDance(dt) {
+  if (dance.done) { dance.doneT -= dt; if (dance.doneT <= 0) { S.scene = "play"; dance = null; } return; }
   dance.t += dt;
-  if (dance.show) { dance.showT -= dt; if (dance.showT <= 0) dance.show = false; return; }
-  for (const k of keysPressed) if (ARROWS.includes(k)) danceInput(k);
+  for (const k of keysPressed) { const i = ARROWS.indexOf(k); if (i >= 0) danceHit(i); }
+  if (swipe) {
+    const i = Math.abs(swipe.dx) > Math.abs(swipe.dy)
+      ? (swipe.dx < 0 ? 0 : 3) : (swipe.dy < 0 ? 1 : 2);
+    danceHit(i); swipe = null;
+  }
+  for (const n of dance.notes) if (!n.hit && dance.t - n.t > 420) { n.hit = -1; dance.combo = 0; }
+  const last = dance.notes[dance.notes.length - 1];
+  if (dance.t > last.t + 900) {
+    dance.done = true; dance.doneT = 1600;
+    const repG = dance.hits * 2 + dance.perfect * 2 + (dance.maxCombo >> 1);
+    S.rep += Math.max(1, repG);
+    flash(dance.hits > dance.notes.length / 2 ? STR.danceWin : STR.danceFail);
+    nextDay();
+  }
 }
 function renderDance(t) {
   drawChapterBG(t, "dance");
-  ctx.fillStyle = "rgba(10,6,20,0.45)"; ctx.fillRect(0, 0, W, H);
-  if (!artReady("cut_dance")) drawHero(W / 2 - 12, 170, t * 3, CHAPTERS[S.chapter].act);
-  // sequência
-  for (let i = 0; i < dance.seq.length; i++) {
-    const x = W / 2 - dance.seq.length * 22 + i * 44;
-    const done = i < dance.idx;
-    px(x, 80, 36, 36, done ? "#3af48a" : dance.show ? "#e8a33d" : "#3a3048");
-    if (dance.show || done) text(ARROW_CHAR[dance.seq[i]], x + 18, 88, 20, "#1a1028", "center");
-    else text("?", x + 18, 88, 20, "#ffe9c4", "center");
+  ctx.fillStyle = "rgba(10,6,20,0.5)"; ctx.fillRect(0, 0, W, H);
+  if (!dance) return;
+  // alvo central: gesto a executar (anel estilo ritmo)
+  const cx = W / 2, cy = H / 2 + 10;
+  ctx.strokeStyle = "rgba(255,233,196,0.5)"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(cx, cy, 46, 0, 7); ctx.stroke();
+  for (const n of dance.notes) {
+    if (n.hit) continue;
+    const dtN = n.t - dance.t;
+    if (dtN > 1600 || dtN < -420) continue;
+    const r = 46 + Math.max(0, dtN) * 0.16;           // anel encolhe até ao alvo
+    const a = Math.max(0.15, 1 - dtN / 1600);
+    const [dx2, dy2] = DIRS[n.dir];
+    ctx.strokeStyle = `rgba(244,212,74,${a})`; ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke();
+    if (dtN < 700) {
+      outlineText(ARROW_CHAR[ARROWS[n.dir]], cx + dx2 * 0, cy - 14, 40, "#f4d44a");
+      // seta de direção do gesto
+      ctx.strokeStyle = "#3af48a"; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + dx2 * 70, cy + dy2 * 70); ctx.stroke();
+    }
+    break; // só a nota da frente
   }
-  outlineText(STR.danceHint, W / 2, 280, 12, "#ffe9c4");
-  // botões touch
-  buttons = [];
-  const bx = W / 2 - 100;
-  [["←","ArrowLeft"],["↑","ArrowUp"],["↓","ArrowDown"],["→","ArrowRight"]].forEach(([ch2, code], i) => {
-    btn(ch2, bx + i * 52, 305, 44, 36, () => danceInput(code), "#8a3af4");
-  });
-  drawButtons();
+  if (dance.combo >= 3) outlineText(`${dance.combo}x ${STR.combo}`, W / 2, 36, 20, "#f4d44a");
+  if (dance.done) {
+    px(W / 2 - 140, H / 2 - 40, 280, 80, "rgba(20,12,32,0.94)");
+    outlineText(`${dance.hits}/${dance.notes.length} passos`, W / 2, H / 2 - 28, 16, "#f4d44a");
+    outlineText(`combo ${dance.maxCombo}x`, W / 2, H / 2 - 4, 13, "#ffe9c4");
+  } else outlineText(STR.danceSwipeHint, W / 2, H - 24, 11, "rgba(255,233,196,0.85)");
 }
 
 // ── Cena principal ────────────────────────────────────────────────
@@ -445,32 +535,104 @@ function startTalk() {
   S.npcIdx = (S.npcIdx + 1) % ch.npcs.length; S.npcLine = 0; S.scene = "dialog";
 }
 
+// ── Modo exploração: Dioney anda pelo cenário (estilo FF7) ────────
+const hero = { x: 90, target: null, dir: 1, walking: false };
+const GROUND = H - 78;
+const ACTION_DEFS = {
+  dance:   { icon: "🕺", label: STR.actDance,   fn: startDance,                   color: "#8a3af4" },
+  record:  { icon: "🎥", label: STR.actRecord,  fn: startRecord,                  color: "#e84a6a" },
+  edit:    { icon: "✂️", label: STR.actEdit,    fn: doEdit,                       color: "#3a8af4" },
+  publish: { icon: "📤", label: STR.actPublish, fn: doPublish,                    color: "#3af48a" },
+  work:    { icon: "💪", label: STR.actWork,    fn: doWork,                       color: "#a87a4a" },
+  talk:    { icon: "💬", label: STR.actTalk,    fn: startTalk,                    color: "#f4a43a" },
+  shop:    { icon: "🛒", label: STR.actShop,    fn: () => { S.scene = "shop"; },  color: "#f4d43a" },
+};
+function hotspots() {
+  const ch = CHAPTERS[S.chapter];
+  const spots = [];
+  for (const a of ch.actions) {
+    if (a === "talk") { // NPCs são entidades individuais no mapa
+      ch.npcs.forEach((npc, i) => spots.push({
+        icon: "", label: npc.name, color: "#f4a43a", id: "npc" + i, npcIdx: i,
+        fn: () => { S.npcIdx = i; S.npcLine = 0; S.scene = "dialog"; },
+      }));
+    } else spots.push({ ...ACTION_DEFS[a], id: a });
+  }
+  const gap = (W - 120) / Math.max(1, spots.length - 1 || 1);
+  spots.forEach((s2, i) => s2.x = spots.length === 1 ? W / 2 : 60 + i * gap);
+  return spots;
+}
+function updateWalk(dt) {
+  const sp = 0.16 * dt;
+  let moved = false;
+  if (held.has("KeyA") || held.has("ArrowLeft"))  { hero.x -= sp; hero.dir = -1; moved = true; hero.target = null; }
+  if (held.has("KeyD") || held.has("ArrowRight")) { hero.x += sp; hero.dir = 1;  moved = true; hero.target = null; }
+  if (hero.target !== null) {
+    const d = hero.target - hero.x;
+    if (Math.abs(d) < sp) { hero.x = hero.target; hero.target = null; }
+    else { hero.x += Math.sign(d) * sp; hero.dir = Math.sign(d); moved = true; }
+  }
+  hero.x = Math.max(24, Math.min(W - 24, hero.x));
+  hero.walking = moved;
+}
+function nearSpot() {
+  let best = null;
+  for (const h2 of hotspots()) if (Math.abs(h2.x - hero.x) < 34 && (!best || Math.abs(h2.x - hero.x) < Math.abs(best.x - hero.x))) best = h2;
+  return best;
+}
+function drawHeroBig(t) {
+  const x = hero.x - 16, y = GROUND - 64;
+  const bob = hero.walking ? Math.sin(t / 90) * 3 : Math.sin(t / 400) * 1.5;
+  const legSwing = hero.walking ? Math.sin(t / 90) * 6 : 0;
+  ctx.save();
+  if (hero.dir < 0) { ctx.translate(hero.x * 2, 0); ctx.scale(-1, 1); }
+  px(x + 6, y + bob, 22, 18, "#3a2818");                    // cabelo
+  px(x + 8, y + 9 + bob, 18, 13, "#c98a5a");                // rosto
+  px(x + 12, y + 13 + bob, 3, 3, "#1a1028"); px(x + 20, y + 13 + bob, 3, 3, "#1a1028");
+  px(x + 4, y + 22 + bob, 26, 24, "#e85a3a");               // camisa
+  px(x + 9, y + 28 + bob, 16, 10, "#333");                  // câmera ao peito
+  px(x + 12, y + 30 + bob, 6, 6, "#88c4f4");
+  px(x + 5, y + 46 + bob, 10, 18 + legSwing * 0.4, "#2a3a5a");
+  px(x + 19, y + 46 + bob, 10, 18 - legSwing * 0.4, "#2a3a5a");
+  ctx.restore();
+  // sombra
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.beginPath(); ctx.ellipse(hero.x, GROUND + 2, 18, 5, 0, 0, 7); ctx.fill();
+}
 function renderPlay(t) {
   const ch = CHAPTERS[S.chapter];
   drawChapterBG(t, "bg");
-  if (!artReady(CHAPTER_ART[ch.id]?.bg)) {
-    drawHero(80, 215, t, ch.act);
-    ch.npcs.forEach((n, i) => drawNpc(200 + i * 90, 218, t, i));
+  updateWalk(STEP);
+  // hotspots no chão
+  buttons = [];
+  const near = nearSpot();
+  for (const h2 of hotspots()) {
+    const active = near && near.id === h2.id;
+    const pulse = active ? Math.sin(t / 150) * 3 : 0;
+    ctx.fillStyle = active ? h2.color : "rgba(20,12,32,0.75)";
+    ctx.beginPath(); ctx.ellipse(h2.x, GROUND + 4, 22 + pulse, 7, 0, 0, 7); ctx.fill();
+    if (h2.npcIdx !== undefined) drawNpc(h2.x - 12, GROUND - 52, t, h2.npcIdx);
+    else text(h2.icon, h2.x, GROUND - 38 + Math.sin(t / 300 + h2.x) * 3, 22, "#fff", "center");
+    if (active) {
+      px(h2.x - 52, GROUND - 72, 104, 22, "rgba(20,12,32,0.92)");
+      text(h2.label, h2.x, GROUND - 68, 12, "#ffe9c4", "center");
+      if (!isTouch) outlineText(STR.interactPrompt, h2.x, GROUND - 92, 11, "#f4d44a");
+    }
+    // toque direto no ícone = interagir
+    buttons.push({ label: "", x: h2.x - 26, y: GROUND - 50, w: 52, h: 60, color: "", fn: () => {
+      if (Math.abs(h2.x - hero.x) < 34) h2.fn(); else hero.target = h2.x;
+    }});
+  }
+  drawHeroBig(t);
+  if (keysPressed.includes("Space") || keysPressed.includes("Enter")) { if (near) near.fn(); }
+  // toque no chão = andar até lá
+  if (pointer && pointer.y > 70 && pointer.y < H - 30) {
+    let onSpot = false;
+    for (const b of buttons) if (pointer.x >= b.x && pointer.x <= b.x + b.w && pointer.y >= b.y && pointer.y <= b.y + b.h) onSpot = true;
+    if (!onSpot) { hero.target = pointer.x; pointer = null; }
   }
   vhs(t); hud();
-  // botões de ação
-  buttons = [];
-  const acts = ch.actions;
-  const map = {
-    dance: [STR.actDance, startDance, "#8a3af4"],
-    record: [STR.actRecord, startRecord, "#e84a6a"],
-    edit: [STR.actEdit, doEdit, "#3a8af4"],
-    publish: [STR.actPublish, doPublish, "#3af48a"],
-    work: [STR.actWork, doWork, "#a87a4a"],
-    talk: [STR.actTalk, startTalk, "#f4a43a"],
-    shop: [STR.actShop, () => { S.scene = "shop"; }, "#f4d43a"],
-  };
-  const bw = 96, gap = 6, total = acts.length * (bw + gap) - gap;
-  acts.forEach((a, i) => {
-    const [label, fn, color] = map[a];
-    btn(label, W / 2 - total / 2 + i * (bw + gap), H - 62, bw, 34, fn, color);
-  });
-  drawButtons();
+  text(isTouch ? STR.walkHintTouch : STR.walkHint, W / 2, H - 36, 10, "rgba(255,233,196,0.7)", "center");
   if (goalMet()) {
     px(W / 2 - 130, 95, 260, 60, "rgba(20,12,32,0.92)");
     outlineText(STR.chapterDone, W / 2, 105, 16, "#f4d44a");
