@@ -58,3 +58,11 @@
 - game_id PS1: 8a39a1d5-e12a-48fe-aaf5-f5401dfc6b96
 - URL PS1: https://elegant-storm-511.higgsfield.gg/
 - (versão pixel art continua em https://fearless-compass-734.higgsfield.gg/)
+
+## v3 — Gameplay Bully-style (exploração + ritmo)
+- ✓ WASD/tap-to-walk, NPCs no mundo, hotspots físicos
+- ✓ Gravação guitar-hero 4 pistas (técnicas de câmera) + dicas didáticas
+- ✓ Dança por gestos de mouse/swipe
+- ✗ update in-place via game_id falhou de novo (bug confirmado da plataforma)
+- game_id v3: b4e735e0-9746-4302-9867-20fa5b35de6a
+- URL v3 (ATUAL): https://hazel-stream-225.higgsfield.gg/
