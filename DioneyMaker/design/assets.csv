@@ -1,0 +1,33 @@
+id,type,description,style,size_px,role
+bg_caninde,background,Rua de terra batida no sertão do Ceará ao pôr do sol,retro pixel warm amber,640x360,Act 1 scene background
+bg_dance_stage,background,Pequeno palco improvisado com luzes coloridas,retro pixel warm,640x360,Act 1 dance sequence
+bg_lisbon_street,background,Rua de Lisboa com calçada portuguesa à noite,retro pixel cool blue,640x360,Act 2 scene background
+bg_studio_085,background,Escritório/estúdio moderno com equipamentos e ecrãs,retro pixel amber+blue,640x360,Act 3 scene background
+char_dioney_young,sprite,Dioney jovem (17-20 anos) com roupas de dança,retro pixel,32x48,player character Act 1
+char_dioney_mid,sprite,Dioney adulto com câmara ao pescoço,retro pixel,32x48,player character Act 2
+char_dioney_pro,sprite,Dioney profissional com drone e equipamento,retro pixel,32x48,player character Act 3
+char_luan,sprite,Luan — irmão artístico jovem,retro pixel,32x48,NPC crew member
+char_junin,sprite,Junin — primo fiel do Canindé,retro pixel,32x48,NPC crew member
+char_tiro_lipa,sprite,Tiro Lipa — artista rap/hip-hop Canindé,retro pixel,32x48,NPC client Act 1
+char_andre,sprite,André — sócio e primo em Portugal,retro pixel,32x48,NPC crew Act 2-3
+char_alex,sprite,Alex — membro da crew Stari Rebol,retro pixel,32x48,NPC crew Act 3
+ui_phone_v3,ui,Motorola V3 na mão do personagem viewfinder frame,retro pixel,320x180,filming mini-game UI Act 1
+ui_phone_modern,ui,Smartphone moderno viewfinder frame,retro pixel,320x180,filming mini-game UI Act 1-2
+ui_camera_dslr,ui,Canon DSLR viewfinder frame,retro pixel,320x180,filming mini-game UI Act 2-3
+ui_hud_bar,ui,Barra HUD: dinheiro + reputação + tempo + equip ícone,retro pixel,640x40,persistent HUD
+ui_dialogue_box,ui,Caixa de diálogo estilo RPG clássico com VHS scanlines,retro pixel,640x120,dialogue system
+item_motorola_v3,item,Ícone Motorola V3 dourado pixel,retro pixel,32x32,equipment item
+item_nokia_n73,item,Ícone Nokia N73 pixel,retro pixel,32x32,equipment item
+item_stabilizer,item,Ícone estabilizador de gimbal pixel,retro pixel,32x32,equipment item
+item_dslr,item,Ícone câmara DSLR pixel,retro pixel,32x32,equipment item
+item_drone,item,Ícone drone pixel,retro pixel,32x32,equipment item
+item_sony_a7,item,Ícone Sony A7 mirrorless pixel,retro pixel,32x32,equipment item
+fx_vhs_overlay,texture,Overlay VHS scanlines + grain — tiled,retro pixel,640x360,full-screen post-process overlay
+fx_film_grain,texture,Grain de película analógica — tiled,retro pixel,128x128,tiled grain overlay
+music_caninde_ambient,audio,Ambient forró/baião low-key para Canindé,,loop,Act 1 background music
+music_lisbon_ambient,audio,Ambient fado + city sounds para Lisboa,,loop,Act 2 background music
+music_studio_hype,audio,Beat hip-hop/eletrônico para estúdio Act 3,,loop,Act 3 background music
+sfx_camera_click,audio,Som de câmara a tirar foto,,one-shot,filming feedback
+sfx_record_beep,audio,Bip de início de gravação,,one-shot,filming feedback
+sfx_level_up,audio,Som de level-up retro,,one-shot,progression reward
+sfx_coin,audio,Som de moeda/dinheiro recebido,,one-shot,economy feedback
