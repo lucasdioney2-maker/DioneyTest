@@ -1,0 +1,150 @@
+// Todas as strings visíveis ao jogador — PT-BR
+export const STR = {
+  title: "DIONEYMAKER",
+  subtitle: "Do Sertão para o Mundo",
+  tapToStart: "Toque ou pressione ESPAÇO para começar",
+  money: "R$",
+  euro: "€",
+  rep: "REP",
+  skill: "TÉCNICA",
+  day: "Dia",
+  chapter: "Capítulo",
+
+  // Ações
+  actRecord: "🎥 Gravar",
+  actEdit: "✂️ Editar",
+  actPublish: "📤 Publicar",
+  actWork: "💪 Biscate",
+  actTalk: "💬 Conversar",
+  actShop: "🛒 Loja",
+  actDance: "🕺 Dançar",
+  actNext: "Continuar ▶",
+
+  // Mini-game de gravação
+  recordHint: "Toque quando o marcador estiver na zona dourada!",
+  recordPerfect: "TOMADA PERFEITA!",
+  recordGood: "Boa tomada!",
+  recordBad: "Tremido... precisa de estabilizador",
+  noFootage: "Sem footage! Grava primeiro.",
+  noEdited: "Nada editado! Edita primeiro.",
+  edited: "Vídeo editado!",
+  published: "Publicado! +REP +",
+
+  danceHint: "Repete a sequência! Usa as setas ou toca nos botões.",
+  danceWin: "A plateia foi ao delírio! +REP",
+  danceFail: "Errou o passo... tenta de novo!",
+
+  workDone: "Dia de trabalho duro. Dinheiro no bolso, mas zero arte.",
+  notEnough: "Dinheiro insuficiente!",
+  bought: "Comprado: ",
+  goalLabel: "META",
+  chapterDone: "CAPÍTULO CONCLUÍDO!",
+  gameOver: "FIM",
+  theEnd: "DO SERTÃO PARA O MUNDO.\nOBRIGADO POR JOGAR!",
+  credits: "Um jogo sobre a vida de um videomaker.\nDioney Filmes © Canindé → Porto",
+
+  shopTitle: "EQUIPAMENTOS",
+  shopClose: "Fechar",
+  owned: "✓ TENS",
+  equip: [
+    { id: "v3", name: "Motorola V3", desc: "240p, mas é teu", price: 80 },
+    { id: "n73", name: "Nokia N73", desc: "480p! Que evolução", price: 250 },
+    { id: "wmm", name: "Windows Movie Maker", desc: "Aprende a cortar", price: 0 },
+    { id: "vegas", name: "Sony Vegas", desc: "Zooms e efeitos!", price: 400 },
+    { id: "hd", name: "Smartphone HD", desc: "720p no bolso", price: 900 },
+    { id: "dslr", name: "Canon DSLR", desc: "1080p cinema", price: 2500 },
+    { id: "stab", name: "Estabilizador", desc: "Adeus tremido", price: 1200 },
+    { id: "a7", name: "Sony A7", desc: "4K 120fps", price: 6000 },
+    { id: "drone", name: "Drone", desc: "O céu é o limite", price: 4500 },
+  ],
+};
+
+// Capítulos — narrativa em 3 atos
+export const CHAPTERS = [
+  {
+    id: "caninde", act: 1, place: "Canindé, Ceará",
+    intro: ["Sertão do Ceará, anos 2000.", "Dioney é um jovem que respira arte.", "Antes da câmera, veio a dança.", "Ele precisava mostrar isso pro mundo..."],
+    goal: { rep: 30 }, goalText: "Ganha 30 REP dançando",
+    actions: ["dance", "talk"], bgKey: "caninde",
+    npcs: [
+      { name: "Luan", lines: ["Irmão, bora dançar na praça hoje!", "A gente nasceu pra isso."] },
+      { name: "Junin", lines: ["Primo, e se a gente filmasse os ensaios?", "Tem o celular do teu pai, o V3!"] },
+    ],
+    outro: ["As apresentações bombaram.", "Mas Junin tinha razão...", "Alguém precisava REGISTRAR aquilo.", "Dioney pegou o Motorola V3 emprestado."],
+  },
+  {
+    id: "caninde2", act: 1, place: "Canindé — Stari Rebol",
+    intro: ["Com o V3 na mão, tudo mudou.", "Gravar virou obsessão.", "À noite, no Windows Movie Maker,", "ele aprendia a cortar, sozinho."],
+    goal: { money: 300, skill: 20 }, goalText: "R$300 + 20 TÉCNICA",
+    actions: ["record", "edit", "publish", "work", "talk", "shop"], bgKey: "caninde",
+    npcs: [
+      { name: "Luan", lines: ["Esses vídeos do grupo tão ficando bons!", "O Stari Rebol vai ficar famoso!"] },
+      { name: "Junin", lines: ["Ouvi falar de um humorista em Fortaleza...", "Tirullipa. Ele tá procurando videomaker!"] },
+    ],
+    outro: ["Os vídeos do Stari Rebol rodaram a região.", "E aí chegou o convite:", "FORTALEZA. Trabalhar com Tirullipa."],
+  },
+  {
+    id: "fortaleza", act: 1, place: "Fortaleza, Capital",
+    intro: ["A capital. O mar. As luzes.", "Trabalhar com Tirullipa era outro nível.", "Sony Vegas, zooms, cortes rápidos...", "A paixão só crescia."],
+    goal: { money: 1500, rep: 80 }, goalText: "R$1500 + 80 REP",
+    actions: ["record", "edit", "publish", "work", "talk", "shop"], bgKey: "fortaleza",
+    npcs: [
+      { name: "Tirullipa", lines: ["Ô meu fí, esses vídeos tão massa!", "Bora rodar o Brasil inteiro comigo!"] },
+      { name: "Luan", lines: ["Mano, tu tá vivendo o sonho!", "Canindé inteiro tá orgulhoso."] },
+    ],
+    outro: ["Os vídeos viralizavam.", "E veio o convite maior:", "TURNÊ PELO BRASIL."],
+  },
+  {
+    id: "tour", act: 1, place: "Estradas do Brasil",
+    intro: ["Ônibus, palcos, cidades.", "De norte a sul, gravando tudo.", "O auge da carreira no Brasil.", "Mas nada dura para sempre..."],
+    goal: { money: 4000, skill: 60 }, goalText: "R$4000 + 60 TÉCNICA",
+    actions: ["record", "edit", "publish", "talk", "shop"], bgKey: "tour",
+    npcs: [
+      { name: "Tirullipa", lines: ["Foram anos incríveis, meu fí.", "Mas o contrato tá chegando no fim..."] },
+    ],
+    outro: ["O contrato acabou.", "Dioney olhou para o horizonte.", "Uma oportunidade na EUROPA.", "Mas ir significava... recomeçar do ZERO."],
+  },
+  {
+    id: "porto", act: 2, place: "Porto, Portugal",
+    intro: ["Porto. Frio. Chuva. Sotaque novo.", "Tudo que ele era no Brasil... não valia aqui.", "Trabalhos de restauração para o documento.", "A câmera ficou na gaveta. Mas não o sonho."],
+    goal: { money: 2000 }, goalText: "Junta €2000 trabalhando",
+    actions: ["work", "talk"], bgKey: "porto",
+    npcs: [
+      { name: "André", lines: ["Primo! Tu por cá!", "Aguenta firme. Isto melhora.", "Um dia montamos algo juntos."] },
+    ],
+    outro: ["Meses de pratos, copas e cozinhas.", "Documento na mão.", "E na montra de uma loja... uma câmera.", "Era hora de RECOMEÇAR."],
+  },
+  {
+    id: "lisboa", act: 2, place: "Lisboa",
+    intro: ["Lisboa abriu portas.", "Primeiro o telemóvel. Depois a DSLR.", "Nível a nível, de novo.", "André começou a aparecer nos projetos..."],
+    goal: { money: 7000, rep: 150 }, goalText: "€7000 + 150 REP",
+    actions: ["record", "edit", "publish", "work", "talk", "shop"], bgKey: "lisboa",
+    npcs: [
+      { name: "André", lines: ["Estes trabalhos estão a correr bem!", "Já pensaste? Uma empresa. Nossa.", "Tu e eu, primo."] },
+    ],
+    outro: ["Os clientes voltavam. A agenda enchia.", "André e Dioney apertaram as mãos.", "Nascia a EMPRESA. No Porto."],
+  },
+  {
+    id: "empresa", act: 3, place: "Porto — A Empresa",
+    intro: ["Estúdio próprio. Sócio. Crew.", "Alex, Yuri, Luan, Rox, Bruni...", "A caverna estava completa.", "E os clientes? Cada vez maiores."],
+    goal: { money: 20000, rep: 300 }, goalText: "€20000 + 300 REP",
+    actions: ["record", "edit", "publish", "talk", "shop"], bgKey: "studio",
+    npcs: [
+      { name: "André", lines: ["Sócio, chegou um email...", "WARNER BROS. Querem-nos!"] },
+      { name: "Alex", lines: ["A crew tá pronta pra qualquer desafio!"] },
+      { name: "Yuri", lines: ["Equipamento afinado, bora gravar!"] },
+    ],
+    outro: ["Warner Bros. Ibiza com Wesley Safadão.", "Até o EGITO, com as pirâmides ao fundo.", "O menino que dançava em Canindé...", "...agora filmava o MUNDO."],
+  },
+  {
+    id: "mundo", act: 3, place: "Egito — Produção Final",
+    intro: ["Pirâmides douradas ao entardecer.", "O drone sobe.", "A crew inteira atrás do monitor.", "A última tomada da jornada... por enquanto."],
+    goal: { rep: 400 }, goalText: "Faz a tomada final: 400 REP",
+    actions: ["record", "edit", "publish", "talk"], bgKey: "egypt",
+    npcs: [
+      { name: "Wesley Safadão", lines: ["Vumbora gravar esse clipe histórico!"] },
+      { name: "André", lines: ["Do sertão para o mundo, primo.", "Do sertão para o mundo."] },
+    ],
+    outro: ["FIM... ou só o começo."],
+  },
+];
