@@ -55,6 +55,6 @@ jobs:
           code=$(curl -s -o /tmp/resp.txt -w "%{http_code}" -X PUT \
             -H "Content-Type: application/octet-stream" \
             --data-binary @/tmp/dioneymaker.zip \
-            'https://upload.higgsfield.ai/user_2yCbF86he9zAgZT0p4d8Hyq8yxj/d86422ee-2318-4144-8b2d-7d06e359fdae.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYPNTVMCGYPZMTKFK%2F20260611%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260611T234942Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Signature=edac12a6a391dbb25228856bf2a5de427b55933ff7ab9b48c4beb941aef0687f')
+            'https://upload.higgsfield.ai/user_2yCbF86he9zAgZT0p4d8Hyq8yxj/36d46261-64fb-47bd-a66a-fbaf13a15593.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYPNTVMCGYPZMTKFK%2F20260612%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260612T001157Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Signature=ba91a73099ca6551515d099db9c967caad2a6f9df4c853eaecd342eeb79e2ad6')
           echo "HTTP $code"; cat /tmp/resp.txt
           test "$code" = "200"
