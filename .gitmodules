@@ -1,0 +1,3 @@
+[submodule ".agents/social-media-skills"]
+	path = .agents/social-media-skills
+	url = https://github.com/charlie947/social-media-skills.git
