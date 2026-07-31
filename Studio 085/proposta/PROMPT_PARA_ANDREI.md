@@ -18,12 +18,15 @@ QUEM SOMOS (não inventar nada além disto — usar só o que está confirmado):
 - Existe um briefing mais detalhado já no repositório em `Studio 085/proposta/PROMPT_SITE_STUDIO085.md` — leia esse ficheiro primeiro e use-o como fonte de verdade para tudo o que não estiver repetido aqui.
 
 ASSETS: as fotos e vídeos reais já estão (ou vão estar) em:
+- `Studio 085/assets/logo/` — ficheiro real da logo (`studio085-logo.svg`/`.png`), e opcionalmente o ponto vermelho isolado
 - `Studio 085/assets/pessoas/` — fotos do Andrei e do Lucas, incluindo `andrei-cracha.jpg` e `lucas-cracha.jpg` na MESMA pose
 - `Studio 085/assets/equipamentos/` — fotos reais do equipamento
 - `Studio 085/assets/portfolio-real/` — vídeos/fotos reais já organizados por tipo de produto
-Analise essas imagens antes de gerar qualquer conteúdo. Preserve fielmente o rosto, corpo e aparência real de cada um. Não recrie pessoas nem equipamento por IA se já existir a foto/vídeo real — use o material real diretamente no site. IA só entra para a peça descrita abaixo (câmera + transição de crachá).
+Analise essas imagens antes de gerar qualquer conteúdo. Preserve fielmente o rosto, corpo e aparência real de cada um. Não recrie pessoas, equipamento nem a logo por IA se já existir o ficheiro real — use o material real diretamente no site. IA só entra para a peça descrita abaixo (câmera + transição de crachá); a logo é animada em código, nunca por IA.
 
-HERO — duas sequências controladas por scroll, uma só depois da outra:
+HERO — três sequências controladas por scroll, uma só depois da outra:
+
+0. Abertura de marca: a logo do Studio 085 é "STUDIO" em cima (caixa alta, geométrica bold) e "O85" em baixo, onde o "O" é um quadrado de cantos arredondados com um ponto vermelho sólido no centro (visual de luz de rec/diafragma), resto em preto. Primeiro beat: ecrã escuro, só o ponto vermelho aparece pulsando suavemente ao centro (ecoando o diafragma da câmera da sequência 2). Ao rolar, o ponto assenta no lugar do "O" e a wordmark desenha-se/entra em torno dele, nítida, sem distorção, staggered por grupo de letras — fica montada e estática por um instante antes de seguir para a sequência 1. Esta parte NÃO passa pelo Higgsfield: construa nativamente em SVG (paths separados para "STUDIO", "O"+ponto, "8", "5") animado com GSAP, scrub sincronizado ao ScrollTrigger (opacidade, clip-path/stroke-dashoffset para o traço, pequeno stagger de escala/posição), usando o ficheiro real da logo como fonte exata das formas.
 
 1. Transição "dois sócios, um olhar": a partir da foto real do Andrei com o crachá (`andrei-cracha.jpg`), conforme o visitante rola, ele transforma suavemente (morph/crossfade por frames, nunca gerar uma cara nova) até revelar o Lucas com o crachá (`lucas-cracha.jpg`), na mesma pose. Identidade dos dois 100% preservada.
 
@@ -36,7 +39,7 @@ A câmera é metáfora do olhar da dupla, não um produto: sem especificações 
 USO DO HIGGSFIELD MCP: use o Higgsfield para todas estas gerações. Antes de gerar/animar a transição Andrei→Lucas, carregue as fotos reais do Lucas e do Andrei (pasta `assets/pessoas/`) como referência de identidade dentro do próprio Higgsfield (elementos de referência/personagem) — nunca gere rosto ou corpo "de memória", sempre a partir das fotos importadas dos dois. Antes de escolher qual modelo usar (imagem fotorrealista, vídeo cinematográfico), consulte a recomendação do próprio Higgsfield para o objetivo em causa em vez de assumir qual serve melhor. E para montar as pastas e a estrutura do site, use as ferramentas/skills de criação de site que já existem dentro do Higgsfield (não invente uma estrutura paralela do zero) — elas devem criar as pastas do site dentro da pasta onde esta sessão estiver a correr.
 
 ESTRUTURA DO SITE (percurso de venda, do topo ao fecho):
-1. Hero — transição Andrei→Lucas + câmera cinematográfica
+1. Hero — abertura de marca (logo) + transição Andrei→Lucas + câmera cinematográfica
 2. Portefólio — vídeos/fotos reais de `portfolio-real/`, organizados por tipo de produto, apresentados como mini-casos (não só uma grelha solta): cada peça com uma linha curta de contexto, no estilo "case" que estúdios premiados usam, não uma galeria genérica
 3. Serviços — Captação · Edição · Planeamento (como trabalhamos)
 4. Sobre — Studio 085, Andrei + Lucas, Porto, forma de trabalhar
@@ -57,4 +60,4 @@ ESTILO E TOM: fundo preto/grafite, branco quente, detalhes âmbar, tipografia ed
 
 TÉCNICO: vídeo da câmera transformado em sequência de frames em `<canvas>`, GSAP + ScrollTrigger a fixar o canvas e sincronizar frames/textos com o scroll (incluindo a transição Andrei→Lucas), Lenis para smooth scroll, rolagem reversível (voltar desfaz as animações). Todo o texto é HTML real, nunca dentro de imagem/vídeo.
 
-VALIDAÇÃO: rode em localhost e confirme no browser — transição Andrei→Lucas, animação da câmera (rotação → explosão → travessia da lente), canvas + GSAP + ScrollTrigger + Lenis, galerias do portefólio, formulário de orçamento com o link para WhatsApp, fecho de venda final, layout mobile, e que a rolagem reversa desfaz as animações — antes de dizer que está pronto.
+VALIDAÇÃO: rode em localhost e confirme no browser — abertura da logo (ponto → wordmark montada, sem distorção da tipografia), transição Andrei→Lucas, animação da câmera (rotação → explosão → travessia da lente), canvas + GSAP + ScrollTrigger + Lenis, galerias do portefólio, formulário de orçamento com o link para WhatsApp, fecho de venda final, layout mobile, e que a rolagem reversa desfaz as animações (incluindo a logo) — antes de dizer que está pronto.

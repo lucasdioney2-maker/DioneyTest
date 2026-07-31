@@ -43,6 +43,9 @@ assets/
     lucas-02.jpg ...       (apoio: identidade, poses, rosto)
   equipamentos/
     camera-01.jpg, gimbal-01.jpg, lente-01.jpg, drone-01.jpg ...
+  logo/
+    studio085-logo.svg (ou .png em alta resolução)
+    studio085-dot.svg/.png (opcional, o ponto vermelho isolado)
 ```
 
 Regras:
@@ -57,7 +60,34 @@ Regras:
 
 ---
 
-## 3. HERO — DUAS SEQUÊNCIAS CONTROLADAS PELA ROLAGEM
+## 3. HERO — TRÊS SEQUÊNCIAS CONTROLADAS PELA ROLAGEM
+
+### 3.0 Abertura de marca — logo Studio 085
+
+Descrição real da logo (ficheiro em `assets/logo/`): a palavra "STUDIO" em
+caixa alta, tipografia geométrica bold, por cima; por baixo, "O85" na mesma
+família bold/rounded, onde o "O" é um quadrado de cantos arredondados com um
+ponto vermelho sólido preenchendo o centro — visual de luz de gravação/rec ou
+diafragma de câmera. Resto da wordmark em preto sobre fundo branco.
+
+Primeiro beat do scroll, antes da transição Andrei→Lucas:
+1. Ecrã escuro, só o **ponto vermelho** aparece ao centro, com uma pulsação
+   subtil (como uma luz de rec/aperture a "respirar") — ecoa visualmente o
+   diafragma da câmera que vai aparecer mais à frente na §3.2.
+2. Conforme o visitante começa a rolar, o ponto assenta na posição do "O" e a
+   wordmark ("STUDIO" + "85") desenha-se/entra em torno dele — traço nítido,
+   sem distorção, staggered por grupo de letras.
+3. A logo fica montada e estática por um instante antes de a rolagem
+   continuar para a transição Andrei→Lucas (§3.1).
+
+**Regra crítica**: esta sequência NÃO é gerada por IA/Higgsfield. A logo é um
+elemento de marca com texto — animar por geração de vídeo arriscaria
+distorcer a tipografia. Construir nativamente em código: SVG (paths
+separados para "STUDIO", "O"+ponto, "8", "5") animado com GSAP, scrub
+sincronizado ao ScrollTrigger (opacidade, `clip-path`/`stroke-dashoffset`
+para o desenho do traço, pequeno stagger de escala/posição por grupo). Usar
+o ficheiro real da logo (`assets/logo/`) como fonte exata das formas — não
+redesenhar a logo de memória.
 
 ### 3.1 Abertura — "Dois sócios, um olhar"
 Ponto de partida: foto real do **Andrei** com o crachá do Studio 085, na pose de
@@ -113,7 +143,7 @@ Logo a seguir à transição Andrei→Lucas, entra a sequência da câmera:
 
 ## 4. ESTRUTURA DA LANDING PAGE
 
-1. **Hero** — Andrei→Lucas (crachá) + câmera cinematográfica (rolagem controlada)
+1. **Hero** — abertura de marca (logo) + Andrei→Lucas (crachá) + câmera cinematográfica (rolagem controlada)
 2. **Portefólio** — vídeos/imagens reais, organizados por tipo de produto (ver §5)
 3. **Serviços** — Captação · Edição · Planeamento
 4. **Sobre** — Studio 085, Andrei + Lucas, base no Porto, forma de trabalhar
@@ -214,11 +244,12 @@ portefólio → serviços → sobre → atendimento → depoimentos → **fecho*
 
 ## 8. VALIDAÇÃO ANTES DE "PRONTO"
 
-Rodar em localhost e confirmar no browser: transição Andrei→Lucas controlada
-por scroll, animação da câmera (rotação → explosão → travessia da lente),
+Rodar em localhost e confirmar no browser: abertura da logo (ponto → wordmark
+montada, sem distorção da tipografia), transição Andrei→Lucas controlada por
+scroll, animação da câmera (rotação → explosão → travessia da lente),
 canvas + GSAP + ScrollTrigger + Lenis, galerias do portefólio, formulário de
 orçamento (incluindo o link/mensagem para WhatsApp), layout mobile, e que a
-rolagem reversa desfaz as animações corretamente.
+rolagem reversa desfaz as animações corretamente (incluindo a logo).
 
 ---
 
@@ -243,10 +274,13 @@ funcionar.
 ## 10. HANDOFF — PRÓXIMA SESSÃO (quando o Andrei entrar com as fotos)
 
 ### Já está pronto
-- Este briefing (`PROMPT_SITE_STUDIO085.md`), com hero (Andrei→Lucas + câmera),
-  estrutura da landing page, serviços vs. produtos, CTA de orçamento e fecho
-  ("percurso de venda").
+- Este briefing (`PROMPT_SITE_STUDIO085.md`), com abertura de marca (logo),
+  hero (Andrei→Lucas + câmera), estrutura da landing page, serviços vs.
+  produtos, CTA de orçamento e fecho ("percurso de venda").
 - Pastas de assets criadas e vazias, à espera dos ficheiros:
+  - `Studio 085/assets/logo/` (ver README dentro — precisa do ficheiro real
+    da logo, `studio085-logo.svg`/`.png`, e opcionalmente o ponto vermelho
+    isolado)
   - `Studio 085/assets/pessoas/` (ver README dentro — precisa de
     `andrei-cracha.jpg` e `lucas-cracha.jpg` **na mesma pose**, + fotos de
     apoio de cada um)
@@ -258,26 +292,29 @@ funcionar.
 ### O que falta para a próxima sessão executar
 1. Confirmar que `andrei-cracha.jpg` / `lucas-cracha.jpg` estão na mesma pose
    (bloqueador da transição do hero — perguntar se não estiver claro).
-2. Gerar via Higgsfield MCP: a imagem hero da câmera (§3.2) e o único vídeo da
+2. Construir a abertura de marca (§3.0) em código (SVG + GSAP/ScrollTrigger)
+   a partir do ficheiro real da logo — sem passar pelo Higgsfield, para não
+   arriscar distorcer a tipografia.
+3. Gerar via Higgsfield MCP: a imagem hero da câmera (§3.2) e o único vídeo da
    câmera (rotação → explosão → travessia da lente), usando o melhor modelo
    fotorrealista para a imagem e o modelo mais cinematográfico disponível
    (preferência Cinema Studio 3.0, 4K) para o vídeo — 16:9, 5–10s, sem áudio.
    Seguir o §3.3: carregar as fotos do Lucas e do Andrei como referência de
    identidade e consultar a recomendação de modelo do próprio Higgsfield antes
    de decidir qual usar.
-3. Gerar/animar a transição Andrei→Lucas a partir das fotos reais de crachá
+4. Gerar/animar a transição Andrei→Lucas a partir das fotos reais de crachá
    (morph/crossfade por frames, mesma lógica de scroll-scrub do §7), também
    usando essas fotos como referência de identidade no Higgsfield (§3.3).
-4. Montar o projeto do site usando as ferramentas/skills de criação de site já
+5. Montar o projeto do site usando as ferramentas/skills de criação de site já
    existentes dentro do Higgsfield MCP (não inventar uma estrutura paralela) —
    elas devem criar as pastas do site dentro do diretório onde a sessão
    estiver a correr. Este site é institucional do próprio Studio 085, não uma
    demo para cliente (diferente do que existe em `Studio 085/demo-site`).
-5. Integrar o portefólio real (`portfolio-real/`) nas galerias com máscaras
+6. Integrar o portefólio real (`portfolio-real/`) nas galerias com máscaras
    circulares, parallax e zoom suave.
-6. Implementar o CTA de orçamento (§6) e o fecho de venda (§6.1), incluindo o
+7. Implementar o CTA de orçamento (§6) e o fecho de venda (§6.1), incluindo o
    link/mensagem para WhatsApp.
-7. Rodar em localhost e validar tudo conforme o checklist do §8 antes de dizer
+8. Rodar em localhost e validar tudo conforme o checklist do §8 antes de dizer
    que está pronto.
 
 ### Se quiser, também
