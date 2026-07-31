@@ -13,11 +13,12 @@
 **Studio 085** — Porto, Portugal.
 Criamos vídeo para empresas: captação, edição e planeamento, do conceito à entrega.
 
-- **Andrei Vieira** — Sócio (primo do Lucas)
-- **Lucas Dioney** — Sócio
+- **Andrei Vieira** — Sócio (primo do Lucas) · Instagram pessoal: `@andreivieirat`
+- **Lucas Dioney** — Sócio · Instagram pessoal: `@dioneyfilmes`
 
 Fontes reais de conteúdo (não inventar dados):
-- Instagram: `@studio085pt` (ver nota sobre conexão Windsor no fim do documento)
+- Instagram do estúdio: `@studio085pt` (ver nota sobre conexão Windsor no fim do documento)
+- Instagram pessoal de cada sócio: `@andreivieirat` (Andrei) · `@dioneyfilmes` (Lucas)
 - Contacto: `@studio085pt` · `@dioneyfilmes` · `studio085pt@gmail.com` · +351 913 137 568
 - Base: Porto, Portugal
 - Documento interno de posicionamento: `Studio 085/proposta/PROPOSTA_SERVICOS_STUDIO085.md`

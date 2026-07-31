@@ -11,10 +11,10 @@ VÍDEO/AUDIOVISUAL — STUDIO 085
 Crie para mim o site institucional cinematográfico do Studio 085, estúdio de vídeo criativo para empresas, sediado no Porto, Portugal.
 
 QUEM SOMOS (não inventar nada além disto — usar só o que está confirmado):
-- Andrei Vieira — sócio
-- Lucas Dioney — sócio
+- Andrei Vieira — sócio · Instagram pessoal @andreivieirat
+- Lucas Dioney — sócio · Instagram pessoal @dioneyfilmes
 - Serviços reais: Captação, Edição e Planeamento
-- Contacto real: @studio085pt · @dioneyfilmes · studio085pt@gmail.com · +351 913 137 568
+- Contacto real: @studio085pt · @dioneyfilmes · @andreivieirat · studio085pt@gmail.com · +351 913 137 568
 - Existe um briefing mais detalhado já no repositório em `Studio 085/proposta/PROMPT_SITE_STUDIO085.md` — leia esse ficheiro primeiro e use-o como fonte de verdade para tudo o que não estiver repetido aqui.
 
 ASSETS: as fotos e vídeos reais já estão (ou vão estar) em:
