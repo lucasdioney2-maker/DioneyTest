@@ -91,6 +91,24 @@ Logo a seguir à transição Andrei→Lucas, entra a sequência da câmera:
 5. A câmera é metáfora do olhar da dupla, não um produto: sem specs, preço,
    botão de compra ou linguagem de e-commerce.
 
+### 3.3 Como usar o Higgsfield MCP nas gerações
+
+- **Referência de identidade**: antes de gerar/animar a transição Andrei→Lucas
+  (e qualquer outra geração que envolva os dois), carregar as fotos reais deles
+  (pasta `assets/pessoas/`) como referência dentro do próprio Higgsfield
+  (elementos de referência / personagem) — nunca gerar rosto ou corpo "de
+  memória"; sempre a partir das fotos importadas do Lucas e do Andrei.
+- **Recomendação de modelo**: antes de escolher qual modelo usar (imagem
+  fotorrealista da câmera, vídeo cinematográfico, transição), consultar a
+  recomendação do próprio Higgsfield para o objetivo em causa, em vez de
+  assumir qual serve melhor — deixar essa recomendação orientar a decisão
+  final de modelo/ferramenta.
+- **Pastas do site**: para montar a estrutura de pastas e ficheiros do site,
+  usar as ferramentas/skills de criação de site que já existem dentro do
+  Higgsfield, em vez de inventar uma estrutura paralela do zero. Essas
+  ferramentas devem criar as pastas do site dentro do diretório onde a sessão
+  estiver a correr.
+
 ---
 
 ## 4. ESTRUTURA DA LANDING PAGE
@@ -244,12 +262,17 @@ funcionar.
    câmera (rotação → explosão → travessia da lente), usando o melhor modelo
    fotorrealista para a imagem e o modelo mais cinematográfico disponível
    (preferência Cinema Studio 3.0, 4K) para o vídeo — 16:9, 5–10s, sem áudio.
+   Seguir o §3.3: carregar as fotos do Lucas e do Andrei como referência de
+   identidade e consultar a recomendação de modelo do próprio Higgsfield antes
+   de decidir qual usar.
 3. Gerar/animar a transição Andrei→Lucas a partir das fotos reais de crachá
-   (morph/crossfade por frames, mesma lógica de scroll-scrub do §7).
-4. Montar o projeto do site (Vite/React ou HTML+GSAP simples — decidir stack
-   na hora considerando o que já existe em `Studio 085/demo-site` como
-   referência de setup, mas este site é institucional do próprio Studio 085,
-   não uma demo para cliente).
+   (morph/crossfade por frames, mesma lógica de scroll-scrub do §7), também
+   usando essas fotos como referência de identidade no Higgsfield (§3.3).
+4. Montar o projeto do site usando as ferramentas/skills de criação de site já
+   existentes dentro do Higgsfield MCP (não inventar uma estrutura paralela) —
+   elas devem criar as pastas do site dentro do diretório onde a sessão
+   estiver a correr. Este site é institucional do próprio Studio 085, não uma
+   demo para cliente (diferente do que existe em `Studio 085/demo-site`).
 5. Integrar o portefólio real (`portfolio-real/`) nas galerias com máscaras
    circulares, parallax e zoom suave.
 6. Implementar o CTA de orçamento (§6) e o fecho de venda (§6.1), incluindo o

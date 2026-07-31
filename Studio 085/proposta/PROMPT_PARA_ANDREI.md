@@ -33,6 +33,8 @@ Modelo de vídeo: o mais cinematográfico disponível, preferência Cinema Studi
 
 A câmera é metáfora do olhar da dupla, não um produto: sem especificações técnicas, preço, botão de compra ou linguagem de e-commerce.
 
+USO DO HIGGSFIELD MCP: use o Higgsfield para todas estas gerações. Antes de gerar/animar a transição Andrei→Lucas, carregue as fotos reais do Lucas e do Andrei (pasta `assets/pessoas/`) como referência de identidade dentro do próprio Higgsfield (elementos de referência/personagem) — nunca gere rosto ou corpo "de memória", sempre a partir das fotos importadas dos dois. Antes de escolher qual modelo usar (imagem fotorrealista, vídeo cinematográfico), consulte a recomendação do próprio Higgsfield para o objetivo em causa em vez de assumir qual serve melhor. E para montar as pastas e a estrutura do site, use as ferramentas/skills de criação de site que já existem dentro do Higgsfield (não invente uma estrutura paralela do zero) — elas devem criar as pastas do site dentro da pasta onde esta sessão estiver a correr.
+
 ESTRUTURA DO SITE (percurso de venda, do topo ao fecho):
 1. Hero — transição Andrei→Lucas + câmera cinematográfica
 2. Portefólio — vídeos/fotos reais de `portfolio-real/`, organizados por tipo de produto, apresentados como mini-casos (não só uma grelha solta): cada peça com uma linha curta de contexto, no estilo "case" que estúdios premiados usam, não uma galeria genérica
