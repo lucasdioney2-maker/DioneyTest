@@ -100,7 +100,8 @@ Logo a seguir à transição Andrei→Lucas, entra a sequência da câmera:
 4. **Sobre** — Studio 085, Andrei + Lucas, base no Porto, forma de trabalhar
 5. **Experiência de atendimento** — como é o processo do primeiro contacto à entrega
 6. **Depoimentos/prova social reais** — apenas os confirmados via Instagram/cliente
-7. **CTA final** — pedido de orçamento (ver §6)
+7. **CTA de orçamento** — formulário de seleção de produto (ver §6)
+8. **Fecho** — CTA final estilo "percurso de venda" (ver §6.1)
 
 Texto sempre em HTML real (nunca dentro de imagem/vídeo). Fundo preto/grafite,
 branco quente, detalhes âmbar, tipografia editorial, bastante espaço visual.
@@ -142,6 +143,36 @@ Fluxo do formulário/CTA final:
    selecionadas) e/ou formulário que notifica o Studio 085.
 5. Sem preços, sem checkout — apenas qualificação do pedido para orçamento
    personalizado manual pela dupla.
+
+---
+
+## 6.1. FECHO — CTA FINAL ("percurso de venda")
+
+Depois do CTA de orçamento (§6), fechar o site com uma secção final única,
+no estilo do fecho de venda que agências/estúdios audiovisuais usam: não é
+mais um bloco de informação, é o empurrão final para a conversão.
+
+Estrutura da secção (scroll-triggered, full-screen):
+
+1. **Recapitulação emocional curta** — 1 frase que resume a proposta de valor
+   (ex.: reforçar "a câmera regista, a dupla constrói a história" adaptado ao
+   contexto do estúdio, nunca copiar literalmente a frase do prompt de
+   fotografia).
+2. **Prova/confiança** — reaproveitar 1 depoimento real ou 1 número real
+   (ex.: X vídeos entregues, Y anos no mercado) só se existir dado confirmado;
+   caso não haja, omitir em vez de inventar.
+3. **CTA direto de fecho** — frase curta e assertiva estilo "Vamos fechar?" /
+   "Bora fechar esse vídeo?" (tom informal-confiante, condizente com a marca),
+   com botão único e óbvio ligando para WhatsApp já com o resumo do que foi
+   selecionado no formulário de orçamento (§6).
+4. Sem letras miúdas, sem segunda opção concorrendo com o botão — um único
+   caminho de ação nesta secção.
+
+Animação: entrada em cascata (texto → prova → botão), fade/translate suave
+sincronizado com o scroll via GSAP/ScrollTrigger (mesma linguagem visual do
+resto do site — nada de efeito novo só para esta secção). Deve funcionar como
+o último "empurrão" de uma jornada linear: hero (Andrei→Lucas + câmera) →
+portefólio → serviços → sobre → atendimento → depoimentos → **fecho**.
 
 ---
 
@@ -187,3 +218,44 @@ https://onboard.windsor.ai/token_login?access_token=eveGyCjP7rYuxYWPzba3WZUh3yC2
 Requisito do lado do Instagram: `@studio085pt` precisa de ser conta
 Business/Creator ligada a uma Página do Facebook para a API de Insights
 funcionar.
+
+---
+
+## 10. HANDOFF — PRÓXIMA SESSÃO (quando o Andrei entrar com as fotos)
+
+### Já está pronto
+- Este briefing (`PROMPT_SITE_STUDIO085.md`), com hero (Andrei→Lucas + câmera),
+  estrutura da landing page, serviços vs. produtos, CTA de orçamento e fecho
+  ("percurso de venda").
+- Pastas de assets criadas e vazias, à espera dos ficheiros:
+  - `Studio 085/assets/pessoas/` (ver README dentro — precisa de
+    `andrei-cracha.jpg` e `lucas-cracha.jpg` **na mesma pose**, + fotos de
+    apoio de cada um)
+  - `Studio 085/assets/equipamentos/` (fotos reais do equipamento)
+  - `Studio 085/assets/portfolio-real/` (vídeos/fotos reais já organizados por
+    tipo de produto: short-form, long-form, institucional, aftermovie,
+    clínicas, criativo-ia)
+
+### O que falta para a próxima sessão executar
+1. Confirmar que `andrei-cracha.jpg` / `lucas-cracha.jpg` estão na mesma pose
+   (bloqueador da transição do hero — perguntar se não estiver claro).
+2. Gerar via Higgsfield MCP: a imagem hero da câmera (§3.2) e o único vídeo da
+   câmera (rotação → explosão → travessia da lente), usando o melhor modelo
+   fotorrealista para a imagem e o modelo mais cinematográfico disponível
+   (preferência Cinema Studio 3.0, 4K) para o vídeo — 16:9, 5–10s, sem áudio.
+3. Gerar/animar a transição Andrei→Lucas a partir das fotos reais de crachá
+   (morph/crossfade por frames, mesma lógica de scroll-scrub do §7).
+4. Montar o projeto do site (Vite/React ou HTML+GSAP simples — decidir stack
+   na hora considerando o que já existe em `Studio 085/demo-site` como
+   referência de setup, mas este site é institucional do próprio Studio 085,
+   não uma demo para cliente).
+5. Integrar o portefólio real (`portfolio-real/`) nas galerias com máscaras
+   circulares, parallax e zoom suave.
+6. Implementar o CTA de orçamento (§6) e o fecho de venda (§6.1), incluindo o
+   link/mensagem para WhatsApp.
+7. Rodar em localhost e validar tudo conforme o checklist do §8 antes de dizer
+   que está pronto.
+
+### Se quiser, também
+- Autorizar `@studio085pt` no Windsor (link no §9) para puxar bio/posts reais
+  em vez de depender só do que for descrito manualmente.
